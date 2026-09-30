@@ -981,99 +981,126 @@
   </footer>
 
   <script>
-    /* ＝＝＝＝ 1. 資料庫 ＝＝＝＝ */
-    const galleryData = [
-      {
-        id: 'thau-ki',
-        name: '頭旗',
-        tailo: 'Thâu-kî',
-        category: 'flag',
-        img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80',
-        desc: '	• 主帥的象徵：頭旗代表陣頭的「主帥」，在宮廟交陪、出巡或開演時，頭旗所到之處即代表整個陣頭的意志。• 破陣與點兵的指揮具：宋江陣在變換陣形時，隊員必須觀察頭旗（通常配合「雙斧」）的走位、旗號與律動來移動。頭旗動，則全陣動。• 神聖性與禁忌：頭旗在出陣前必須經過淨爐、開光等宗教儀式，並通常會安上符令。在民俗禁忌中，頭旗絕對不能倒地，也不容許外人隨意跨越或觸摸，具有強烈的驅邪、鎮煞與護衛神轎的功能。',
-        audioText: '頭旗 Thâu-kî'
-      },
-      {
-        id: 'siang-poo',
-        name: '雙斧',
-        tailo: 'Siang-póo',
-        category: 'weapon',
-        img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80',
-        desc: '位列頭旗兩側護衛，動作俐落威猛。在隊伍行進與破陣時，負有開闢陣勢、淨空通道與闢邪的重要任務。',
-        audioText: '雙斧 Siang-póo'
-      },
-      {
-        id: 'tuā-to',
-        name: '單刀',
-        tailo: 'tuā-to',
-        category: 'weapon',
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWdR1LgyW__AI5D3bEZtj8iHw9TW3pEOiPdPq-nwX9_HCztbbwlaOoGX8&s=10',
-        desc: '是一種結合長木柄與重型彎刃的傳統兵器。',
-        audioText: '單刀 tuā-to'
-      },
-      {
-        id: 'hōo-suànn',
-        name: '雨傘',
-        tailo: 'Hōo-suànn',
-        category: 'weapon',
-        img: 'https://collections.culture.tw/ShowGalImage?SYSUID=107&IMG=KK5OKQMK0V0EMAKP5MM4MF090GMAM1MCM2MIMMM2MQMSM7MEKK5OKQMPMP0EM6MJK55R5UKD5MMHMJMZKQMBK65FM45U59K75UKL5YKBKDKLKP5OKW0G5SK8M7MWMBKP06MDM604ME0RMSM60RMWMG0EMW&TEXT=K7KG575Y&FROM=5YKK57',
-        desc: '極具地方特色的神兵，外觀是日常玉傘，但內藏機關，進可攻、退可守，也是陣頭中軍師或重要角色的象徵。',
-        audioText: '雨傘 Hōo-suànn'
-      },
-      {
-        id: 'pê',
-        name: '耙',
-        tailo: 'Pê',
-        category: 'weapon',
-        img: 'https://collections.culture.tw/ShowGalImage?SYSUID=107&IMG=KK5OKQMK0V0EMAKP5MM4MF090GMAM1MCM2MIMMM2MQMSM7MEKK5OKQMPMP0EM6MJK55R5UKD5MMHMJMZKQMBK65FM45U59K75UKL5YKBKDKLKP5OKW0G5SK8M7MWMBKP06MDM604ME0RMSM60RMWMG0EMW&TEXT=K7KG575Y&FROM=5YKK57',
-        desc: '由農用工具演變而來，相傳也是佛教僧侶隨身武器(如魯智深所持)，鏟頭通常漆成紅色。',
-        audioText: '耙 Pê'
-      },
-      {
-        id: 'that-to',
-        name: '躂刀',
-        tailo: 'That-to',
-        category: 'weapon',
-        img: 'https://collections.culture.tw/ShowGalImage?SYSUID=107&IMG=KK5OKQMK0V0EMAKP5MM4MF090GMAM1MCM2MIMMM2MQMSM7MEKK5OKQMPMP0EM6MJK55R5UKD5MMHMJMZKQMBK65FM45U59K75UKL5YKBKDKLKP5OKW0G5SK8M7MWMBKP06MDM604ME0RMSM60RMWMG0EMW&TEXT=K7KG575Y&FROM=5YKK57',
-        desc: '形狀類似大刀但體積較小、重量較輕，操作起來更為靈活、易於變化。',
-        audioText: '躂刀 That-to'
-      },
-      {
-        id: 'tse-bi-kun',
-        name: '齊眉棍',
-        tailo: 'Tsê-bî-kùn',
-        category: 'weapon',
-        img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80',
-        desc: '長度齊眉，攻守兼備。為宋江陣中最具代表性且人數眾多的基本器械之一，講求棍法的連貫、對打節奏與整體氣勢。',
-        audioText: '齊眉棍 Tsê-bî-kùn'
-      },
-      {
-        id: 'siang-to',
-        name: '雙刀',
-        tailo: 'Siang-to',
-        category: 'weapon',
-        img: 'https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=600&q=80',
-        desc: '雙手各執一刀，身法靈活敏捷。在陣形中貼身近打，動作強調步法穩健與身刀合一。',
-        audioText: '雙刀 Siang-to'
-      },
-      {
-        id: 'tin-pai',
-        name: '籐牌',
-        tailo: 'Tîn-pâi',
-        category: 'weapon',
-        img: 'https://images.unsplash.com/photo-1514539079130-25950c84af65?auto=format&fit=crop&w=600&q=80',
-        desc: '以堅韌籐條編織而成，質輕且堅固，配合短刀使用（籐牌附刀）。負責抵擋遠程與重型兵器攻擊。',
-        audioText: '籐牌 Tîn-pâi'
-      },
-      {
-        id: 'gim-lo',
-        name: '鑼鼓手',
-        tailo: 'Lô-kóo-tshiú',
-        category: 'role',
-        img: 'https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?auto=format&fit=crop&w=600&q=80',
-        desc: '掌控全陣配樂與打鬥節奏的核心角色。透過鼓點快慢指揮陣員走位與踏步節奏。',
-        audioText: '鑼鼓手 Lô-kóo-tshiú'
-      }
-    ];
+   /* ＝＝＝＝ 1. 資料庫 ＝＝＝＝ */
+const galleryData = [
+  {
+    id: 'thau-ki',
+    name: '頭旗',
+    tailo: 'Thâu-kî',
+    category: 'flag',
+    img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80',
+    desc: '• 主帥的象徵：頭旗代表陣頭的「主帥」，在宮廟交陪、出巡或開演時，頭旗所到之處即代表整個陣頭的意志。\n• 破陣與點兵的指揮具：宋江陣在變換陣形時，隊員必須觀察頭旗（通常配合「雙斧」）的走位、旗號與律動來移動。頭旗動，則全陣動。\n• 神聖性與禁忌：頭旗在出陣前必須經過淨爐、開光等宗教儀式，並通常會安上符令。在民俗禁忌中，頭旗絕對不能倒地，也不容許外人隨意跨越或觸摸，具有強烈的驅邪、鎮煞與護衛神轎的功能。',
+    audioText: '頭旗 Thâu-kî'
+  },
+  {
+    id: 'siang-poo',
+    name: '雙斧',
+    tailo: 'Siang-póo',
+    category: 'weapon',
+    img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80',
+    desc: '• 副帥與護法：頭旗象徵主帥宋江，而雙斧則扮演「副帥」與「貼身護法」的角色，緊隨頭旗左右保護其安全，與頭旗合稱為「旗斧」。\n• 陣形的第二指揮官：負責帶領隊員進行細部的破陣、開路與斬煞，通常由陣中身手最矯健的核心骨幹擔任。\n• 破煞與開路：具強烈辟邪破煞功能，遇過橋、路口或進入廟埕時舞動劈砍，象徵斬除無形惡煞，開闢清淨道路。',
+    audioText: '雙斧 Siang-póo'
+  },
+  {
+    id: 'tann-to',
+    name: '單刀',
+    tailo: 'Tann-to',
+    category: 'weapon',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWdR1LgyW__AI5D3bEZtj8iHw9TW3pEOiPdPq-nwX9_HCztbbwlaOoGX8&s=10',
+    desc: '常稱為官刀或長刀（如雲南斬馬刀），為雙手共執的長柄重兵器，屬於「開利器」代表。隊伍中通常配置兩支，由身形高大、臂力壯碩者執掌，擔任隊伍的「頭官」與「尾官」，負責前後鎮守、威壓全場。',
+    audioText: '單刀 Tann-to'
+  },
+  {
+    id: 'hoo-suann',
+    name: '雨傘',
+    tailo: 'Hōo-suànn',
+    category: 'weapon',
+    img: 'https://collections.culture.tw/ShowGalImage?SYSUID=107&IMG=KK5OKQMK0V0EMAKP5MM4MF090GMAM1MCM2MIMMM2MQMSM7MEKK5OKQMPMP0EM6MJK55R5UKD5MMHMJMZKQMBK65FM45U59K75UKL5YKBKDKLKP5OKW0G5SK8M7MWMBKP06MDM604ME0RMSM60RMWMG0EMW&TEXT=K7KG575Y&FROM=5YKK57',
+    desc: '極具地方特色的神兵，外觀為日常雨傘但內藏機關，進可攻、退可守。蘊含以柔克剛、出奇制勝的哲學，常與短刀或雙刀搭配，展現觀賞性極高、虛實莫測的對操套路，也是軍師或重要角色的象徵。',
+    audioText: '雨傘 Hōo-suànn'
+  },
+  {
+    id: 'pe',
+    name: '耙',
+    tailo: 'Pê',
+    category: 'weapon',
+    img: 'https://collections.culture.tw/ShowGalImage?SYSUID=107&IMG=KK5OKQMK0V0EMAKP5MM4MF090GMAM1MCM2MIMMM2MQMSM7MEKK5OKQMPMP0EM6MJK55R5UKD5MMHMJMZKQMBK65FM45U59K75UKL5YKBKDKLKP5OKW0G5SK8M7MWMBKP06MDM604ME0RMSM60RMWMG0EMW&TEXT=K7KG575Y&FROM=5YKK57',
+    desc: '即「月牙鏟」，頂端呈彎月朝上、下接長柄，傳統耙頭多漆成紅色。由農用工具演變而來，相傳也是佛教僧侶隨身武器，在操演中屬於中長距離的防禦與壓制型兵器。',
+    audioText: '耙 Pê'
+  },
+  {
+    id: 'pai-to',
+    name: '牌刀',
+    tailo: 'Pâi-to',
+    category: 'weapon',
+    img: 'https://images.unsplash.com/photo-1514539079130-25950c84af65?auto=format&fit=crop&w=600&q=80',
+    desc: '由盾牌（籐編、竹編或牛皮製）搭配短刀使用。牌刀手是陣頭中人數較多的「中堅主力」，在「打人路」與「破陣」時扮演衝鋒陷陣的步兵角色，負責抵擋遠程與重型兵器攻擊。',
+    audioText: '牌刀 Pâi-to'
+  },
+  {
+    id: 'kau-a',
+    name: '鉤鐮槍',
+    tailo: 'Kau-á',
+    category: 'weapon',
+    img: 'https://collections.culture.tw/ShowGalImage?SYSUID=107&IMG=KK5OKQMK0V0EMAKP5MM4MF090GMAM1MCM2MIMMM2MQMSM7MEKK5OKQMPMP0EM6MJK55R5UKD5MMHMJMZKQMBK65FM45U59K75UKL5YKBKDKLKP5OKW0G5SK8M7MWMBKP06MDM604ME0RMSM60RMWMG0EMW&TEXT=K7KG575Y&FROM=5YKK57',
+    desc: '俗稱「鉤仔（Kau-á）」。結合農用鐮刀與長槍的設計，源於民兵訓練與抗擊外敵（如明代戚家軍抗倭）的軍事鐵證，反映台灣早期鄉勇就地取材、禦敵保鄉的歷史背景。',
+    audioText: '鉤鐮槍 Kau-á'
+  },
+  {
+    id: 'kun-a',
+    name: '齊眉棍',
+    tailo: 'Kùn-á',
+    category: 'weapon',
+    img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80',
+    desc: '俗稱「棍仔（Kùn-á）」。長度齊眉，攻守兼備。招式樸實無華但威力驚人，不分棍頭棍尾皆可攻擊防守，為宋江陣中最具代表性且人數眾多的基本長兵器之一。',
+    audioText: '齊眉棍 Kùn-á'
+  },
+  {
+    id: 'thah-to',
+    name: '躂刀',
+    tailo: 'Thah-to',
+    category: 'weapon',
+    img: 'https://collections.culture.tw/ShowGalImage?SYSUID=107&IMG=KK5OKQMK0V0EMAKP5MM4MF090GMAM1MCM2MIMMM2MQMSM7MEKK5OKQMPMP0EM6MJK55R5UKD5MMHMJMZKQMBK65FM45U59K75UKL5YKBKDKLKP5OKW0G5SK8M7MWMBKP06MDM604ME0RMSM60RMWMG0EMW&TEXT=K7KG575Y&FROM=5YKK57',
+    desc: '亦寫作「躂仔刀」，為靈巧流暢的長柄攻擊性兵器。招式（劈、砍、挑、撩）與大刀雷同，但重量較輕，使操刀者能展現快速轉身、連續格擋與突襲，變幻性高。',
+    audioText: '躂刀 Thah-to'
+  },
+  {
+    id: 'siang-pian',
+    name: '雙鞭',
+    tailo: 'Siang-pian',
+    category: 'weapon',
+    img: 'https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=600&q=80',
+    desc: '亦可稱為「鐵尺（Thih-tshioh）」。歸類為防守反擊型短兵器，因為長度較短，非常講究敏捷的步法（如蹲低、翻滾、閃轉）。',
+    audioText: '雙鞭 Siang-pian'
+  },
+  {
+    id: 'siang-kan',
+    name: '雙鐧',
+    tailo: 'Siang-kán',
+    category: 'weapon',
+    img: 'https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=600&q=80',
+    desc: '亦可稱為「雙眼（Siang-gán）」。歸類為攻防一體的雙器械短兵器，講求「左禦右攻，右禦左攻」的雙手協調默契。',
+    audioText: '雙鐧 Siang-kán'
+  },
+  {
+    id: 'siang-to',
+    name: '雙刀',
+    tailo: 'Siang-to',
+    category: 'weapon',
+    img: 'https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=600&q=80',
+    desc: '雙手各執一刀，為身法最輕盈、招式極具觀賞性的「短雙兵」代表。屬於有刃、貼身斬擊的利器，講求劃、割、撩、劈的犀利度與身刀合一。',
+    audioText: '雙刀 Siang-to'
+  },
+  {
+    id: 'lo-koo-tshiu',
+    name: '鑼鼓手',
+    tailo: 'Lô-kóo-tshiú',
+    category: 'role',
+    img: 'https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?auto=format&fit=crop&w=600&q=80',
+    desc: '掌控全陣配樂與打鬥節奏的核心角色。透過鼓點快慢指揮陣員走位與踏步節奏。',
+    audioText: '鑼鼓手 Lô-kóo-tshiú'
+  }
+];
 
     let favorites = JSON.parse(localStorage.getItem('xigang_favs') || '[]');
     let currentCategory = 'all';
