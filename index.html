@@ -3,1431 +3,239 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>西港起陣｜宋江陣文化與台語圖鑑數位平台</title>
+  <title>西港起陣｜台灣第一香藝陣記憶</title>
   <style>
-    /* ＝＝＝＝ 全局變數與主題 ＝＝＝＝ */
     :root {
-      --primary-color: #8b2635; /* 廟宇硃砂紅 */
-      --primary-hover: #6b1d28;
-      --secondary-color: #1f2421; /* 沉穩墨黑 */
-      --accent-color: #d4a373; /* 香火金 */
-      --accent-light: #f4eade;
-      --bg-color: #fcfbf9; /* 宣紙米白 */
-      --card-bg: #ffffff;
-      --text-color: #2b2b2b;
-      --text-muted: #666666;
-      --border-color: #e2dcd5;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      --radius: 12px;
-      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-
-    body.dark-mode {
-      --bg-color: #121413;
-      --card-bg: #1e2220;
-      --text-color: #ecebe8;
-      --text-muted: #a0a5a2;
-      --border-color: #333a36;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      --accent-light: #2c2720;
+      --primary: #7b1d28; /* 深紅色，更有歷史感 */
+      --secondary: #1a1a1a;
+      --bg: #f4efe6; /* 仿舊宣紙色 */
+      --gold: #c5a059; /* 祭典香火金 */
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+      font-family: "PingFang TC", "Microsoft JhengHei", serif;
     }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      background-color: var(--bg);
+      color: var(--secondary);
       line-height: 1.7;
-      transition: background-color 0.3s, color 0.3s;
-      overflow-x: hidden;
     }
 
-    /* ＝＝＝＝ 頂部導覽列 ＝＝＝＝ */
-    header {
+    /* 導覽列 */
+    nav {
       position: fixed;
       top: 0;
       width: 100%;
-      background-color: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 15px rgba(0,0,0,0.06);
-      z-index: 1000;
-      transition: var(--transition);
-    }
-
-    body.dark-mode header {
-      background-color: rgba(30, 34, 32, 0.92);
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
+      background: rgba(244, 239, 230, 0.95);
+      border-bottom: 2px solid var(--gold);
+      padding: 15px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 24px;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
       font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--primary-color);
+      font-weight: 900;
+      color: var(--primary);
       text-decoration: none;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
     }
 
-    .logo-badge {
-      font-size: 0.75rem;
-      background-color: var(--accent-color);
-      color: #fff;
-      padding: 2px 8px;
-      border-radius: 20px;
-      font-weight: normal;
+    .nav-links a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: var(--secondary);
+      font-weight: 500;
+      transition: color 0.3s;
     }
 
-    .nav-tabs {
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* 首頁英雄區 */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1920&q=80') center/cover;
       display: flex;
-      list-style: none;
-      gap: 8px;
-    }
-
-    .tab-btn {
-      background: none;
-      border: none;
-      padding: 8px 16px;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-color);
-      cursor: pointer;
-      border-radius: 20px;
-      transition: var(--transition);
-      display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 6px;
-    }
-
-    .tab-btn:hover {
-      background-color: var(--accent-light);
-      color: var(--primary-color);
-    }
-
-    .tab-btn.active {
-      background-color: var(--primary-color);
-      color: #ffffff;
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .theme-toggle {
-      background: none;
-      border: 1px solid var(--border-color);
-      color: var(--text-color);
-      padding: 8px 12px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: var(--transition);
-      font-size: 0.9rem;
-    }
-
-    .theme-toggle:hover {
-      border-color: var(--accent-color);
-    }
-
-    /* ＝＝＝＝ 主要區域容器 ＝＝＝＝ */
-    main {
-      max-width: 1200px;
-      margin: 85px auto 40px;
-      padding: 0 20px;
-      min-height: calc(100vh - 180px);
-    }
-
-    .tab-content {
-      display: none;
-      animation: fadeIn 0.4s ease-out;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ＝＝＝＝ 模組：首頁 ＝＝＝＝ */
-    .hero-banner {
-      background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1920&q=80') center/cover;
-      border-radius: var(--radius);
-      padding: 80px 40px;
       text-align: center;
-      color: #ffffff;
-      margin-bottom: 40px;
-      box-shadow: var(--shadow);
+      color: white;
     }
 
-    .hero-banner h1 {
-      font-size: 3.2rem;
-      letter-spacing: 3px;
-      margin-bottom: 16px;
+    .hero h1 {
+      font-size: 4.5rem;
+      letter-spacing: 12px;
+      margin-bottom: 10px;
+      font-weight: 900;
       text-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
 
-    .hero-banner p {
-      font-size: 1.25rem;
+    .hero .subtitle {
+      font-size: 1.5rem;
+      color: var(--gold);
+      letter-spacing: 5px;
+      margin-bottom: 30px;
+    }
+
+    .hero p {
       max-width: 700px;
-      margin: 0 auto 30px;
-      color: #e0e0e0;
-      font-weight: 300;
+      font-size: 1.1rem;
+      color: #ddd;
+      margin-bottom: 40px;
     }
 
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
+    /* 藝陣總覽區 */
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin: 80px 0 40px;
+      letter-spacing: 3px;
     }
 
-    .btn-primary, .btn-secondary {
-      padding: 12px 28px;
-      border-radius: 30px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      border: none;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--gold);
+      margin: 15px auto;
     }
 
-    .btn-primary {
-      background-color: var(--primary-color);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background-color: var(--primary-hover);
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background-color: rgba(255, 255, 255, 0.15);
-      color: #fff;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .btn-secondary:hover {
-      background-color: rgba(255, 255, 255, 0.3);
-      transform: translateY(-2px);
-    }
-
-    .feature-grid {
+    .array-container {
+      max-width: 1100px;
+      margin: 0 auto 100px;
+      padding: 0 20px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-top: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
     }
 
-    .feature-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 30px;
-      transition: var(--transition);
-      cursor: pointer;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow);
-      border-color: var(--accent-color);
-    }
-
-    .feature-icon {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-      display: inline-block;
-    }
-
-    .feature-card h3 {
-      font-size: 1.3rem;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-
-    .feature-card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    /* ＝＝＝＝ 模組：圖鑑頁面 ＝＝＝＝ */
-    .filter-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      gap: 16px;
-      flex-wrap: wrap;
-      background-color: var(--card-bg);
-      padding: 16px 20px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border-color);
-    }
-
-    .search-box {
+    .array-card {
       position: relative;
-      flex: 1;
-      min-width: 250px;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 10px 16px 10px 40px;
-      border-radius: 20px;
-      border: 1px solid var(--border-color);
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      font-size: 0.95rem;
-      outline: none;
-      transition: var(--transition);
-    }
-
-    .search-box input:focus {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(139, 38, 53, 0.15);
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-    }
-
-    .category-chips {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .chip {
-      padding: 6px 16px;
-      border-radius: 20px;
-      background-color: var(--bg-color);
-      border: 1px solid var(--border-color);
-      color: var(--text-color);
-      cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: var(--transition);
-    }
-
-    .chip.active, .chip:hover {
-      background-color: var(--accent-color);
-      color: #fff;
-      border-color: var(--accent-color);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      border: 1px solid var(--border-color);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: 0.4s;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow);
-    }
-
-    .card-img-wrapper {
-      position: relative;
-      height: 200px;
-      overflow: hidden;
-    }
-
-    .card-img-wrapper img {
+    /* 只有宋江陣是亮的，其他的加上灰階與半透明 */
+    .array-card img {
       width: 100%;
-      height: 100%;
+      height: 300px;
       object-fit: cover;
-      transition: transform 0.5s;
+      transition: 0.5s;
     }
 
-    .card:hover .card-img-wrapper img {
+    .array-card.active:hover img {
       transform: scale(1.05);
     }
 
-    .bookmark-btn {
+    .array-card.coming-soon {
+      opacity: 0.6;
+      filter: grayscale(80%);
+      cursor: not-allowed;
+    }
+
+    .card-overlay {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(0, 0, 0, 0.5);
-      border: none;
-      color: white;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(4px);
-      transition: var(--transition);
-    }
-
-    .bookmark-btn.active {
-      color: #ffb703;
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    .card-content {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 8px;
-    }
-
-    .card-title {
-      font-size: 1.3rem;
-      color: var(--primary-color);
-      font-weight: 700;
-    }
-
-    .tailo {
-      color: var(--accent-color);
-      font-family: Georgia, serif;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .card-desc {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 16px;
-      flex-grow: 1;
-    }
-
-    .card-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .audio-btn {
-      flex: 1;
-      background-color: var(--accent-light);
-      border: 1px solid var(--accent-color);
-      color: var(--secondary-color);
-      padding: 8px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      font-weight: 600;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    body.dark-mode .audio-btn {
-      color: var(--text-color);
-    }
-
-    .audio-btn:hover {
-      background-color: var(--accent-color);
-      color: white;
-    }
-
-    .detail-btn {
-      background: none;
-      border: 1px solid var(--border-color);
-      color: var(--text-color);
-      padding: 8px 14px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: var(--transition);
-    }
-
-    .detail-btn:hover {
-      background-color: var(--bg-color);
-      border-color: var(--text-muted);
-    }
-
-    /* ＝＝＝＝ 模組：互動陣型模擬器 ＝＝＝＝ */
-    .simulator-container {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 24px;
-      background-color: var(--card-bg);
-      border-radius: var(--radius);
-      border: 1px solid var(--border-color);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .canvas-wrapper {
-      position: relative;
-      background-color: #1a1e1c;
-      border-radius: 8px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 480px;
-    }
-
-    #formationCanvas {
+      bottom: 0;
       width: 100%;
-      height: 100%;
-      max-height: 500px;
-      cursor: crosshair;
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+      padding: 30px 20px 20px;
+      color: white;
     }
 
-    .sim-controls {
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(8px);
+    .card-overlay h3 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+      color: var(--gold);
+    }
+
+    .enter-btn {
+      display: inline-block;
+      margin-top: 15px;
       padding: 8px 20px;
-      border-radius: 30px;
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      color: #fff;
-    }
-
-    .sim-btn {
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .sim-btn:hover {
-      color: var(--accent-color);
-    }
-
-    .sim-panel h3 {
-      color: var(--primary-color);
-      font-size: 1.4rem;
-      margin-bottom: 16px;
-    }
-
-    .formation-selector {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .formation-btn {
-      padding: 10px 14px;
-      text-align: left;
-      background-color: var(--bg-color);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      color: var(--text-color);
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .formation-btn.active, .formation-btn:hover {
-      background-color: var(--primary-color);
+      background: var(--primary);
       color: white;
-      border-color: var(--primary-color);
-    }
-
-    .info-box {
-      background-color: var(--bg-color);
-      padding: 16px;
-      border-radius: 8px;
-      border-left: 4px solid var(--accent-color);
-      font-size: 0.95rem;
-    }
-
-    .info-box h4 {
-      color: var(--primary-color);
-      margin-bottom: 6px;
-    }
-
-    /* ＝＝＝＝ 模組：隨堂測驗 ＝＝＝＝ */
-    .quiz-card {
-      max-width: 650px;
-      margin: 0 auto;
-      background-color: var(--card-bg);
-      border-radius: var(--radius);
-      border: 1px solid var(--border-color);
-      padding: 36px;
-      box-shadow: var(--shadow);
-      text-align: center;
-    }
-
-    .quiz-progress {
-      height: 6px;
-      background-color: var(--border-color);
-      border-radius: 3px;
-      margin-bottom: 24px;
-      overflow: hidden;
-    }
-
-    .quiz-progress-bar {
-      height: 100%;
-      background-color: var(--primary-color);
-      width: 0%;
-      transition: width 0.3s;
-    }
-
-    .quiz-speaker {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background-color: var(--accent-light);
-      border: 2px solid var(--accent-color);
-      color: var(--primary-color);
-      font-size: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .quiz-speaker:hover {
-      transform: scale(1.1);
-      background-color: var(--accent-color);
-      color: white;
-    }
-
-    .options-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .option-btn {
-      padding: 14px;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .option-btn:hover {
-      border-color: var(--accent-color);
-      background-color: var(--accent-light);
-    }
-
-    .option-btn.correct {
-      background-color: #2a9d8f !important;
-      color: white !important;
-      border-color: #2a9d8f !important;
-    }
-
-    .option-btn.wrong {
-      background-color: #e76f51 !important;
-      color: white !important;
-      border-color: #e76f51 !important;
-    }
-
-    /* ＝＝＝＝ 模組：田野筆記與地圖 ＝＝＝＝ */
-    .fieldwork-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .field-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 24px;
-    }
-
-    .field-card h3 {
-      color: var(--primary-color);
-      margin-bottom: 12px;
-      font-size: 1.3rem;
-    }
-
-    .map-placeholder {
-      width: 100%;
-      height: 300px;
-      background-color: #24292e;
-      border-radius: 8px;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-    }
-
-    .map-pin {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: var(--primary-color);
-      border: 2px solid white;
-      border-radius: 50%;
-      cursor: pointer;
-      transform: translate(-50%, -50%);
-      transition: var(--transition);
-    }
-
-    .map-pin:hover {
-      transform: translate(-50%, -50%) scale(1.4);
-      background-color: var(--accent-color);
-      z-index: 10;
-    }
-
-    /* ＝＝＝＝ 彈窗 Modal ＝＝＝＝ */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-box {
-      background-color: var(--card-bg);
-      border-radius: var(--radius);
-      max-width: 600px;
-      width: 90%;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 30px;
-      position: relative;
-      box-shadow: var(--shadow);
-      transform: translateY(20px);
-      transition: transform 0.3s;
-    }
-
-    .modal-overlay.active .modal-box {
-      transform: translateY(0);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--text-muted);
-      cursor: pointer;
-    }
-
-    /* ＝＝＝＝ 頁尾 Footer ＝＝＝＝ */
-    footer {
-      background-color: var(--secondary-color);
-      color: #aaaaaa;
-      text-align: center;
-      padding: 30px 20px;
+      text-decoration: none;
+      border-radius: 20px;
       font-size: 0.9rem;
-      margin-top: 60px;
+      transition: 0.3s;
     }
 
-    /* ＝＝＝＝ 響應式 RWD ＝＝＝＝ */
-    @media (max-width: 850px) {
-      .simulator-container {
-        grid-template-columns: 1fr;
-      }
-      .fieldwork-container {
-        grid-template-columns: 1fr;
-      }
-      .nav-tabs {
-        display: none; /* 可根據需求擴充手機版選單 */
-      }
-      .hero-banner h1 {
-        font-size: 2.2rem;
-      }
-      .options-grid {
-        grid-template-columns: 1fr;
-      }
+    .enter-btn:hover {
+      background: #5a141d;
+    }
+
+    footer {
+      background: var(--secondary);
+      color: #888;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- 頂部導覽列 -->
-  <header>
-    <div class="nav-container">
-      <a href="#" class="logo" onclick="switchTab('home')">
-        西港起陣
-        <span class="logo-badge">數位文化圖鑑</span>
-      </a>
-      <ul class="nav-links nav-tabs">
-        <li><button class="tab-btn active" onclick="switchTab('home')">🏠 首頁</button></li>
-        <li><button class="tab-btn" onclick="switchTab('gallery')">🗡️ 兵器圖鑑</button></li>
-        <li><button class="tab-btn" onclick="switchTab('simulator')">☯️ 陣形模擬器</button></li>
-        <li><button class="tab-btn" onclick="switchTab('quiz')">🎧 隨堂測驗</button></li>
-        <li><button class="tab-btn" onclick="switchTab('fieldwork')">📜 田野筆記</button></li>
-      </ul>
-      <div class="header-actions">
-        <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()">🌙 墨夜模式</button>
+  <nav>
+    <a href="index.html" class="logo">西港起陣</a>
+    <div class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="#arrays">藝陣總覽</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="subtitle">台灣第一香</div>
+    <h1>西港刈香</h1>
+    <p>傳承數百年的民間信仰與武藝結晶。在這裡，陣頭不只是祭典的儀式，更是凝聚鄉里的力量與母語文化的活字典。</p>
+    <a href="#arrays" class="enter-btn" style="padding: 12px 30px; font-size: 1.1rem; background: var(--gold); color: var(--secondary); font-weight: bold;">探索西港藝陣</a>
+  </section>
+
+  <h2 class="section-title" id="arrays">西港藝陣總覽</h2>
+
+  <div class="array-container">
+    <div class="array-card active">
+      <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" alt="宋江陣">
+      <div class="card-overlay">
+        <h3>宋江陣</h3>
+        <p>三十六部將的武藝傳承</p>
+        <a href="songjiang.html" class="enter-btn">進入主題館</a>
       </div>
     </div>
-  </header>
 
-  <!-- 主內容區域 -->
-  <main>
-    <!-- 模組 1：首頁 -->
-    <section id="home" class="tab-content active">
-      <div class="hero-banner">
-        <h1>西港起陣</h1>
-        <p>透過數位互動圖鑑與動態陣形模擬，保存台灣第一香「西港刈香」宋江陣的武術技藝與台語專業詞彙。</p>
-        <div class="hero-buttons">
-          <button class="btn-primary" onclick="switchTab('gallery')">探索兵器圖鑑</button>
-          <button class="btn-secondary" onclick="switchTab('simulator')">進入陣形模擬器</button>
-        </div>
+    <div class="array-card coming-soon">
+      <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80" alt="金獅陣">
+      <div class="card-overlay">
+        <h3>金獅陣</h3>
+        <p>資料採集中...</p>
       </div>
+    </div>
 
-      <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">文化體驗三大亮點</h2>
-      <div class="feature-grid">
-        <div class="feature-card" onclick="switchTab('gallery')">
-          <span class="feature-icon">🔊</span>
-          <h3>在地專業台語發音</h3>
-          <p>收錄傳統陣頭兵器與陣法台語術語（標註教育部台羅拼音），支援現場語音朗讀與語音測試。</p>
-        </div>
-        <div class="feature-card" onclick="switchTab('simulator')">
-          <span class="feature-icon">☯️</span>
-          <h3>動態陣法即時模擬</h3>
-          <p>透過 Canvas 動態展現八卦陣、蜈蚣陣與開斧動作，點擊陣中人員可檢視個人職責與站位。</p>
-        </div>
-        <div class="feature-card" onclick="switchTab('quiz')">
-          <span class="feature-icon">🎯</span>
-          <h3>互動聽力與文史測驗</h3>
-          <p>藉由趣味問答驗收學習成果，聽語音選兵器，深入了解傳統陣頭文化底蘊。</p>
-        </div>
+    <div class="array-card coming-soon">
+      <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="白鶴陣">
+      <div class="card-overlay">
+        <h3>白鶴陣</h3>
+        <p>資料採集中...</p>
       </div>
-    </section>
-
-    <!-- 模組 2：兵器與角色圖鑑 -->
-    <section id="gallery" class="tab-content">
-      <div class="filter-bar">
-        <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="searchInput" placeholder="搜尋兵器、角色或台羅拼音..." oninput="renderGallery()">
-        </div>
-        <div class="category-chips">
-          <button class="chip active" onclick="filterCategory('all', this)">全部 (All)</button>
-          <button class="chip" onclick="filterCategory('weapon', this)">傳統兵器</button>
-          <button class="chip" onclick="filterCategory('role', this)">陣頭角色</button>
-          <button class="chip" onclick="filterCategory('flag', this)">旗幟與樂器</button>
-          <button class="chip" onclick="filterCategory('favorite', this)">⭐ 我的收藏</button>
-        </div>
-      </div>
-
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- 動態渲染卡片 -->
-      </div>
-    </section>
-
-    <!-- 模組 3：陣形模擬器 -->
-    <section id="simulator" class="tab-content">
-      <div class="simulator-container">
-        <div class="canvas-wrapper">
-          <canvas id="formationCanvas" width="600" height="450"></canvas>
-          <div class="sim-controls">
-            <button class="sim-btn" onclick="toggleSimPlay()" id="playBtn">⏸️ 暫停</button>
-            <button class="sim-btn" onclick="resetSim()">🔄 重置</button>
-            <span>速度：</span>
-            <input type="range" id="speedRange" min="0.5" max="2" step="0.1" value="1" style="width: 80px;">
-          </div>
-        </div>
-        <div class="sim-panel">
-          <h3>宋江陣經典陣形</h3>
-          <div class="formation-selector">
-            <button class="formation-btn active" onclick="changeFormation('bagua', this)">1. 八卦陣 (Pah-kuà-tsûn)</button>
-            <button class="formation-btn" onclick="changeFormation('centipede', this)">2. 蜈蚣陣 (Gôo-kong-tsûn)</button>
-
-            <button class="formation-btn" onclick="changeFormation('duida', this)">3. 對打陣 (Tuì-tánn-tsûn)</button>
-            <button class="formation-btn" onclick="changeFormation('circle', this)">4. 開斧圓陣 (Khui-póo-tsûn)</button>
-          </div>
-          <div class="info-box" id="formationInfo">
-            <h4>八卦陣</h4>
-            <p>宋江陣最具防禦與鎮煞意義的陣型。頭旗與雙斧位於陣心，其餘兵器依陰陽八卦方位包覆，變化莫測。</p>
-          </div>
-          <p style="margin-top: 15px; font-size: 0.85rem; color: var(--text-muted);">💡 提示：點擊畫布上的陣員（圓點），可檢視該位置的兵器與台語名稱。</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 模組 4：隨堂測驗 -->
-    <section id="quiz" class="tab-content">
-      <div class="quiz-card">
-        <div class="quiz-progress">
-          <div class="quiz-progress-bar" id="quizProgressBar"></div>
-        </div>
-        <p style="color: var(--accent-color); font-weight: 600; margin-bottom: 8px;" id="quizCount">問題 1 / 5</p>
-
-        <div class="quiz-speaker" onclick="playQuizAudio()">
-          🔊
-        </div>
-        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">點擊上方喇叭聆聽台語發音，選出正確的名稱：</p>
-
-        <h3 id="quizQuestionTitle" style="font-size: 1.4rem; color: var(--primary-color); margin-bottom: 20px;">請問這是哪一項兵器？</h3>
-
-        <div class="options-grid" id="optionsGrid">
-          <!-- 測驗選項 -->
-        </div>
-
-        <div id="quizResult" style="margin-top: 20px; font-weight: bold;"></div>
-      </div>
-    </section>
-
-    <!-- 模組 5：田野筆記與地圖 -->
-    <section id="fieldwork" class="tab-content">
-      <div class="fieldwork-container">
-        <div class="field-card">
-          <h3>走入廟埕，聽見真實聲景</h3>
-          <p>西港刈香（西港慶安宮刈香大典）被譽為「台灣第一香」。宋江陣不僅是民俗藝陣，更是早期村落自我防衛的武力組織。</p>
-          <br>
-          <p>本數位圖鑑團隊實地走訪西港周邊陣館與慶安宮，採集老一輩師傅的口述記憶與專業動作台語術語，期望透過數位化讓傳統母語與陣頭文化得以永續傳承。</p>
-        </div>
-
-        <div class="field-card">
-          <h3>西港刈香陣館地圖（示意）</h3>
-          <div class="map-placeholder">
-            <span>慶安宮周邊陣館分布圖</span>
-            <div class="map-pin" style="top: 40%; left: 50%;" title="西港慶安宮" onclick="showPinInfo('慶安宮', '西港刈香信仰中心，香科期各陣頭皆需至此開斧起陣。')"></div>
-            <div class="map-pin" style="top: 30%; left: 35%;" title="八份姑媽宮" onclick="showPinInfo('八份姑媽宮', '早期宋江陣發源地之一，保有歷史悠久的采風紀錄。')"></div>
-            <div class="map-pin" style="top: 60%; left: 65%;" title="烏竹林廣慈宮" onclick="showPinInfo('烏竹林廣慈宮', '以金獅陣聞名，與宋江陣同屬武陣體系。')"></div>
-          </div>
-          <div id="pinDetails" style="margin-top: 15px; font-size: 0.95rem; color: var(--text-muted);">
-            點擊地圖上的紅點可檢視文史紀錄。
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- 詳細資料彈窗 Modal -->
-  <div class="modal-overlay" id="detailModal">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <h2 id="modalTitle" style="color: var(--primary-color); margin-bottom: 8px;">頭旗</h2>
-      <p id="modalTailo" class="tailo" style="margin-bottom: 16px;">Thâu-kî</p>
-      <img id="modalImg" src="" alt="" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px; margin-bottom: 16px;">
-      <p id="modalDesc" style="color: var(--text-color); line-height: 1.8; margin-bottom: 20px;"></p>
-      <button class="audio-btn" id="modalAudioBtn" style="width: 100%; padding: 12px; font-size: 1rem;">🔊 播放在地台語發音</button>
     </div>
   </div>
 
   <footer>
-    <p>© 2026 數位台語圖鑑計畫・採用教育部推薦漢字與台羅拼音</p>
-    <p style="margin-top: 5px; font-size: 0.8rem; color: #888;">特別感謝：西港在地陣頭前輩協助發音與文史指導</p>
+    <p>© 2026 西港在地文化數位推廣專案・為特殊選材計畫製作</p>
   </footer>
 
-  <script>
-   /* ＝＝＝＝ 1. 資料庫 ＝＝＝＝ */
-const galleryData = [
-  {
-    id: 'thau-ki',
-    name: '頭旗',
-    tailo: 'Thâu-kî',
-    category: 'weapon',
-    img: 'image/1.jpeg',
-    desc: '• 主帥的象徵：頭旗代表陣頭的「主帥」，在宮廟交陪、出巡或開演時，頭旗所到之處即代表整個陣頭的意志。\n• 破陣與點兵的指揮具：宋江陣在變換陣形時，隊員必須觀察頭旗（通常配合「雙斧」）的走位、旗號與律動來移動。頭旗動，則全陣動。\n• 神聖性與禁忌：頭旗在出陣前必須經過淨爐、開光等宗教儀式，並通常會安上符令。在民俗禁忌中，頭旗絕對不能倒地，也不容許外人隨意跨越或觸摸，具有強烈的驅邪、鎮煞與護衛神轎的功能。',
-    audioText: '頭旗 Thâu-kî'
-  },
-  {
-    id: 'siang-poo',
-    name: '雙斧',
-    tailo: 'Siang-póo',
-    category: 'weapon',
-    img: 'image/2.jpeg',
-    desc: '• 副帥與護法：頭旗象徵主帥宋江，而雙斧則扮演「副帥」與「貼身護法」的角色，緊隨頭旗左右保護其安全，與頭旗合稱為「旗斧」。\n• 陣形的第二指揮官：負責帶領隊員進行細部的破陣、開路與斬煞，通常由陣中身手最矯健的核心骨幹擔任。\n• 破煞與開路：具強烈辟邪破煞功能，遇過橋、路口或進入廟埕時舞動劈砍，象徵斬除無形惡煞，開闢清淨道路。',
-    audioText: '雙斧 Siang-póo'
-  },
-  {
-    id: 'tann-to',
-    name: '單刀',
-    tailo: 'Tann-to',
-    category: 'weapon',
-    img: 'image/3.jpeg',
-    desc: '常稱為官刀或長刀（如雲南斬馬刀），為雙手共執的長柄重兵器，屬於「開利器」代表。隊伍中通常配置兩支，由身形高大、臂力壯碩者執掌，擔任隊伍的「頭官」與「尾官」，負責前後鎮守、威壓全場。',
-    audioText: '單刀 Tann-to'
-  },
-  {
-    id: 'hoo-suann',
-    name: '雨傘',
-    tailo: 'Hōo-suànn',
-    category: 'weapon',
-    img: 'image/4.jpeg',
-    desc: '極具地方特色的神兵，外觀為日常雨傘但內藏機關，進可攻、退可守。蘊含以柔克剛、出奇制勝的哲學，常與短刀或雙刀搭配，展現觀賞性極高、虛實莫測的對操套路，也是軍師或重要角色的象徵。',
-    audioText: '雨傘 Hōo-suànn'
-  },
-  {
-    id: 'pe',
-    name: '耙',
-    tailo: 'Pê',
-    category: 'weapon',
-    img: 'image/5.jpeg',
-    desc: '即「月牙鏟」，頂端呈彎月朝上、下接長柄，傳統耙頭多漆成紅色。由農用工具演變而來，相傳也是佛教僧侶隨身武器，在操演中屬於中長距離的防禦與壓制型兵器。',
-    audioText: '耙 Pê'
-  },
-  {
-    id: 'pai-to',
-    name: '牌刀',
-    tailo: 'Pâi-to',
-    category: 'weapon',
-    img: 'image/6.jpeg',
-    desc: '由盾牌（籐編、竹編或牛皮製）搭配短刀使用。牌刀手是陣頭中人數較多的「中堅主力」，在「打人路」與「破陣」時扮演衝鋒陷陣的步兵角色，負責抵擋遠程與重型兵器攻擊。',
-    audioText: '牌刀 Pâi-to'
-  },
-  {
-    id: 'kau-a',
-    name: '鉤鐮槍',
-    tailo: 'Kau-á',
-    category: 'weapon',
-    img: 'image/7.jpeg',
-    desc: '俗稱「鉤仔（Kau-á）」。結合農用鐮刀與長槍的設計，源於民兵訓練與抗擊外敵（如明代戚家軍抗倭）的軍事鐵證，反映台灣早期鄉勇就地取材、禦敵保鄉的歷史背景。',
-    audioText: '鉤鐮槍 Kau-á'
-  },
-  {
-    id: 'kun-a',
-    name: '齊眉棍',
-    tailo: 'Kùn-á',
-    category: 'weapon',
-    img: 'image/8.jpeg',
-    desc: '俗稱「棍仔（Kùn-á）」。長度齊眉，攻守兼備。招式樸實無華但威力驚人，不分棍頭棍尾皆可攻擊防守，為宋江陣中最具代表性且人數眾多的基本長兵器之一。',
-    audioText: '齊眉棍 Kùn-á'
-  },
-  {
-    id: 'thah-to',
-    name: '躂刀',
-    tailo: 'Thah-to',
-    category: 'weapon',
-    img: 'image/9.jpeg',
-    desc: '亦寫作「躂仔刀」，為靈巧流暢的長柄攻擊性兵器。招式（劈、砍、挑、撩）與大刀雷同，但重量較輕，使操刀者能展現快速轉身、連續格擋與突襲，變幻性高。',
-    audioText: '躂刀 Thah-to'
-  },
-  {
-    id: 'siang-pian',
-    name: '雙鞭',
-    tailo: 'Siang-pian',
-    category: 'weapon',
-    img: 'image/10.jpeg',
-    desc: '亦可稱為「鐵尺（Thih-tshioh）」。歸類為防守反擊型短兵器，因為長度較短，非常講究敏捷的步法（如蹲低、翻滾、閃轉）。',
-    audioText: '雙鞭 Siang-pian'
-  },
-  {
-    id: 'siang-kan',
-    name: '雙鐧',
-    tailo: 'Siang-kán',
-    category: 'weapon',
-    img: 'image/11.jpeg',
-    desc: '亦可稱為「雙眼（Siang-gán）」。歸類為攻防一體的雙器械短兵器，講求「左禦右攻，右禦左攻」的雙手協調默契。',
-    audioText: '雙鐧 Siang-kán'
-  },
-  {
-    id: 'siang-to',
-    name: '雙刀',
-    tailo: 'Siang-to',
-    category: 'weapon',
-    img: 'image/12.jpeg',
-    desc: '雙手各執一刀，為身法最輕盈、招式極具觀賞性的「短雙兵」代表。屬於有刃、貼身斬擊的利器，講求劃、割、撩、劈的犀利度與身刀合一。',
-    audioText: '雙刀 Siang-to'
-  },
-];
-
-    let favorites = JSON.parse(localStorage.getItem('xigang_favs') || '[]');
-    let currentCategory = 'all';
-
-    /* ＝＝＝＝ 2. 主題切換與分頁切換 ＝＝＝＝ */
-    function toggleTheme() {
-      document.body.classList.toggle('dark-mode');
-      const btn = document.getElementById('themeToggleBtn');
-      if (document.body.classList.contains('dark-mode')) {
-        btn.textContent = '☀️ 宣紙模式';
-      } else {
-        btn.textContent = '🌙 墨夜模式';
-      }
-    }
-
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-
-      document.getElementById(tabId).classList.add('active');
-      
-      // 更新按鈕狀態
-      const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.getAttribute('onclick').includes(tabId));
-      if (activeBtn) activeBtn.classList.add('active');
-
-      if (tabId === 'simulator') {
-        initCanvas();
-      } else if (tabId === 'quiz') {
-        initQuiz();
-      }
-    }
-
-    /* ＝＝＝＝ 3. 圖鑑模組（搜尋、篩選、收藏、TTS語音） ＝＝＝＝ */
-    function renderGallery() {
-      const grid = document.getElementById('galleryGrid');
-      const search = document.getElementById('searchInput').value.toLowerCase();
-      grid.innerHTML = '';
-
-      const filtered = galleryData.filter(item => {
-        const matchCat = (currentCategory === 'all') ||
-                         (currentCategory === 'favorite' && favorites.includes(item.id)) ||
-                         (item.category === currentCategory);
-        const matchSearch = item.name.includes(search) || item.tailo.toLowerCase().includes(search) || item.desc.includes(search);
-        return matchCat && matchSearch;
-      });
-
-      if (filtered.length === 0) {
-        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">沒有找到符合條件的項目。</p>`;
-        return;
-      }
-
-      filtered.forEach(item => {
-        const isFav = favorites.includes(item.id);
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="card-img-wrapper">
-            <img src="${item.img}" alt="${item.name}">
-            <button class="bookmark-btn ${isFav ? 'active' : ''}" onclick="toggleFav('${item.id}', event)">
-              ${isFav ? '★' : '☆'}
-            </button>
-          </div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">${item.name}</h3>
-              <span class="tailo">${item.tailo}</span>
-            </div>
-            <p class="card-desc">${item.desc}</p>
-            <div class="card-actions">
-              <button class="audio-btn" onclick="speakText('${item.audioText}')">🔊 聽發音</button>
-              <button class="detail-btn" onclick="openModal('${item.id}')">詳情</button>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    function filterCategory(cat, el) {
-      currentCategory = cat;
-      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-      el.classList.add('active');
-      renderGallery();
-    }
-
-    function toggleFav(id, event) {
-      event.stopPropagation();
-      if (favorites.includes(id)) {
-        favorites = favorites.filter(f => f !== id);
-      } else {
-        favorites.push(id);
-      }
-      localStorage.setItem('xigang_favs', JSON.stringify(favorites));
-      renderGallery();
-    }
-
-    function speakText(text) {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'zh-TW'; // 以閩南語/中文模擬語音
-        utterance.rate = 0.85;
-        window.speechSynthesis.speak(utterance);
-      } else {
-        alert('您的瀏覽器不支援語音合成播放。');
-      }
-    }
-
-    /* ＝＝＝＝ 4. 彈窗 Modal ＝＝＝＝ */
-    function openModal(id) {
-      const item = galleryData.find(g => g.id === id);
-      if (!item) return;
-
-      document.getElementById('modalTitle').textContent = item.name;
-      document.getElementById('modalTailo').textContent = item.tailo;
-      document.getElementById('modalImg').src = item.img;
-      document.getElementById('modalDesc').textContent = item.desc;
-      document.getElementById('modalAudioBtn').onclick = () => speakText(item.audioText);
-
-      document.getElementById('detailModal').classList.add('active');
-    }
-
-    function closeModal() {
-      document.getElementById('detailModal').classList.remove('active');
-    }
-
-    /* ＝＝＝＝ 5. Canvas 陣型模擬器 ＝＝＝＝ */
-    let canvas, ctx;
-    let simAnimationId;
-    let isSimPlaying = true;
-    let simAngle = 0;
-    let currentFormation = 'bagua';
-
-    function initCanvas() {
-      canvas = document.getElementById('formationCanvas');
-      ctx = canvas.getContext('2d');
-      if (!simAnimationId) {
-        animateSim();
-      }
-    }
-
-    function changeFormation(formType, btnEl) {
-      currentFormation = formType;
-      document.querySelectorAll('.formation-btn').forEach(b => b.classList.remove('active'));
-      btnEl.classList.add('active');
-
-      const infoBox = document.getElementById('formationInfo');
-      if (formType === 'bagua') {
-        infoBox.innerHTML = '<h4>八卦陣</h4><p>宋江陣最具防守與鎮煞意義的陣型。頭旗與雙斧位於陣心，其餘兵器依陰陽八卦方位包覆，變化莫測。</p>';
-      } else if (formType === 'centipede') {
-        infoBox.innerHTML = '<h4>蜈蚣陣</h4><p>隊伍魚貫而行，形如百足蜈蚣蜿蜒前進，展現極高敏捷度與團結氣勢。</p>';
-      } else if (formType === 'duida') {
-        infoBox.innerHTML = '<h4>對打陣</h4><p>陣員兩兩相對進行兵器對攻模擬，節奏緊湊且考驗動作默契。</p>';
-      } else if (formType === 'circle') {
-        infoBox.innerHTML = '<h4>開斧圓陣</h4><p>全陣繞成大圓，雙斧與頭旗於中央進行開斧破陣儀式。</p>';
-      }
-    }
-
-    function toggleSimPlay() {
-      isSimPlaying = !isSimPlaying;
-      document.getElementById('playBtn').textContent = isSimPlaying ? '⏸️ 暫停' : '▶️ 播放';
-    }
-
-    function resetSim() {
-      simAngle = 0;
-    }
-
-    function animateSim() {
-      simAnimationId = requestAnimationFrame(animateSim);
-      if (!ctx || !canvas) return;
-
-      const speed = parseFloat(document.getElementById('speedRange').value);
-      if (isSimPlaying) {
-        simAngle += 0.02 * speed;
-      }
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-
-      // 繪製背景網格
-      ctx.strokeStyle = '#2d3531';
-      ctx.lineWidth = 1;
-      for (let x = 0; x < canvas.width; x += 40) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
-      }
-      for (let y = 0; y < canvas.height; y += 40) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
-      }
-
-      // 根據陣形繪製陣員
-      if (currentFormation === 'bagua') {
-        // 中心頭旗
-        drawWarrior(centerX, centerY, '#8b2635', '頭旗');
-        
-        // 八卦外環
-        const count = 8;
-        const radius = 120;
-        for (let i = 0; i < count; i++) {
-          const a = simAngle + (i * (Math.PI * 2 / count));
-          const x = centerX + Math.cos(a) * radius;
-          const y = centerY + Math.sin(a) * radius;
-          drawWarrior(x, y, '#d4a373', i % 2 === 0 ? '齊眉棍' : '雙斧');
-        }
-      } else if (currentFormation === 'centipede') {
-        const count = 10;
-        for (let i = 0; i < count; i++) {
-          const x = 100 + i * 40;
-          const y = centerY + Math.sin(simAngle * 2 + i * 0.4) * 40;
-          drawWarrior(x, y, i === 0 ? '#8b2635' : '#d4a373', i === 0 ? '頭旗' : '陣員');
-        }
-      } else if (currentFormation === 'duida') {
-        for (let i = 0; i < 4; i++) {
-          const offset = Math.sin(simAngle * 3) * 15;
-          drawWarrior(centerX - 80 + offset, 120 + i * 60, '#8b2635', '齊眉棍');
-          drawWarrior(centerX + 80 - offset, 120 + i * 60, '#d4a373', '籐牌');
-        }
-      } else if (currentFormation === 'circle') {
-        const count = 12;
-        const radius = 140;
-        for (let i = 0; i < count; i++) {
-          const a = simAngle + (i * (Math.PI * 2 / count));
-          const x = centerX + Math.cos(a) * radius;
-          const y = centerY + Math.sin(a) * radius;
-          drawWarrior(x, y, '#d4a373', '陣員');
-        }
-        drawWarrior(centerX, centerY, '#8b2635', '雙斧破陣');
-      }
-    }
-
-    function drawWarrior(x, y, color, label) {
-      ctx.beginPath();
-      ctx.arc(x, y, 12, 0, Math.PI * 2);
-      ctx.fillStyle = color;
-      ctx.fill();
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '10px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(label, x, y + 22);
-    }
-
-    /* ＝＝＝＝ 6. 隨堂測驗 ＝＝＝＝ */
-    let currentQuizIndex = 0;
-    const quizQuestions = [
-      {
-        audioText: '頭旗 Thâu-kî',
-        correct: '頭旗 (Thâu-kî)',
-        options: ['頭旗 (Thâu-kî)', '齊眉棍 (Tsê-bî-kùn)', '雙斧 (Siang-póo)', '籐牌 (Tîn-pâi)']
-      },
-      {
-        audioText: '齊眉棍 Tsê-bî-kùn',
-        correct: '齊眉棍 (Tsê-bî-kùn)',
-        options: ['雙刀 (Siang-to)', '齊眉棍 (Tsê-bî-kùn)', '鑼鼓手 (Lô-kóo-tshiú)', '頭旗 (Thâu-kî)']
-      },
-      {
-        audioText: '雙斧 Siang-póo',
-        correct: '雙斧 (Siang-póo)',
-        options: ['籐牌 (Tîn-pâi)', '頭旗 (Thâu-kî)', '雙斧 (Siang-póo)', '雙刀 (Siang-to)']
-      }
-    ];
-
-    function initQuiz() {
-      currentQuizIndex = 0;
-      loadQuizQuestion();
-    }
-
-    function loadQuizQuestion() {
-      const q = quizQuestions[currentQuizIndex];
-      document.getElementById('quizCount').textContent = `問題 ${currentQuizIndex + 1} / ${quizQuestions.length}`;
-      document.getElementById('quizProgressBar').style.width = `${((currentQuizIndex + 1) / quizQuestions.length) * 100}%`;
-      document.getElementById('quizResult').textContent = '';
-
-      const grid = document.getElementById('optionsGrid');
-      grid.innerHTML = '';
-
-      q.options.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.textContent = opt;
-        btn.onclick = () => checkQuizAnswer(opt, q.correct, btn);
-        grid.appendChild(btn);
-      });
-
-      // 自動播放題目發音
-      setTimeout(() => playQuizAudio(), 300);
-    }
-
-    function playQuizAudio() {
-      const q = quizQuestions[currentQuizIndex];
-      speakText(q.audioText);
-    }
-
-    function checkQuizAnswer(selected, correct, btn) {
-      const allBtns = document.querySelectorAll('.option-btn');
-      allBtns.forEach(b => b.disabled = true);
-
-      const res = document.getElementById('quizResult');
-      if (selected === correct) {
-        btn.classList.add('correct');
-        res.textContent = '🎉 正確！發音非常標準！';
-        res.style.color = '#2a9d8f';
-      } else {
-        btn.classList.add('wrong');
-        res.textContent = `❌ 答錯囉，正確答案是：${correct}`;
-        res.style.color = '#e76f51';
-      }
-
-      setTimeout(() => {
-        currentQuizIndex++;
-        if (currentQuizIndex < quizQuestions.length) {
-          loadQuizQuestion();
-        } else {
-          document.getElementById('quizQuestionTitle').textContent = '恭喜完成所有語音測驗！';
-          document.getElementById('optionsGrid').innerHTML = `
-            <button class="btn-primary" style="grid-column: 1/-1; margin-top: 10px;" onclick="initQuiz()">🔄 再測驗一次</button>
-          `;
-        }
-      }, 1800);
-    }
-
-    /* ＝＝＝＝ 7. 地圖地標互動 ＝＝＝＝ */
-    function showPinInfo(title, desc) {
-      document.getElementById('pinDetails').innerHTML = `
-        <strong style="color: var(--primary-color);">${title}</strong>：${desc}
-      `;
-    }
-
-    /* ＝＝＝＝ 8. 初始化 ＝＝＝＝ */
-    document.addEventListener('DOMContentLoaded', () => {
-      renderGallery();
-    });
-  </script>
 </body>
 </html>
