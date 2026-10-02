@@ -864,20 +864,42 @@
     </section>
 
     <!-- 模組 2：兵器與角色圖鑑 -->
-    <section id="gallery" class="tab-content">
-      <div class="filter-bar">
-        <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="searchInput" placeholder="搜尋兵器、角色或台羅拼音..." oninput="renderGallery()">
-        </div>
-        <div class="category-chips">
-          <button class="chip active" onclick="filterCategory('all', this)">全部 (All)</button>
-          <button class="chip" onclick="filterCategory('weapon', this)">傳統兵器</button>
-          <button class="chip" onclick="filterCategory('role', this)">陣頭角色</button>
-          <button class="chip" onclick="filterCategory('flag', this)">旗幟與樂器</button>
-          <button class="chip" onclick="filterCategory('favorite', this)">⭐ 我的收藏</button>
-        </div>
-      </div>
+<section id="gallery" class="tab-content">
+  <div class="filter-bar">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="搜尋兵器、角色或台羅拼音..." oninput="renderGallery()">
+    </div>
+    <div class="category-chips">
+      <button class="chip active" onclick="filterCategory('all', this)">全部 (All)</button>
+      <button class="chip" onclick="filterCategory('weapon', this)">傳統兵器</button>
+      <button class="chip" onclick="filterCategory('fighting', this)">對打</button>
+      <button class="chip" onclick="filterCategory('role', this)">陣頭角色</button>
+      <button class="chip" onclick="filterCategory('flag', this)">旗幟與樂器</button>
+      <button class="chip" onclick="filterCategory('favorite', this)">⭐ 我的收藏</button>
+    </div>
+  </div>
+
+  <!-- 原本的卡片網格 -->
+  <div id="galleryGrid" class="gallery-grid"></div>
+
+  <!-- 對打專屬空白頁面 -->
+  <div id="fightingPage" class="fighting-page" style="display: none;">
+    <div class="page-header">
+      <h2>⚔️ 對打套路與流程說明</h2>
+      <p class="subtitle">可在下方自由記錄與規劃對打步驟順序</p>
+    </div>
+    
+    <!-- 留空步驟列表，動態渲染或自訂填寫 -->
+    <ol id="fightingStepsList" class="flow-steps">
+      <!-- 預設留空 -->
+    </ol>
+
+    <!-- 新增步驟按鈕 -->
+    <button class="add-step-btn" onclick="addFightingStep()">➕ 新增步驟</button>
+  </div>
+</section>
+
 
       <div class="gallery-grid" id="galleryGrid">
         <!-- 動態渲染卡片 -->
@@ -981,6 +1003,80 @@
   </footer>
 
   <script>
+    // 預設空的對打步驟陣列（或自動讀取已儲存內容）
+let fightingSteps = JSON.parse(localStorage.getItem('fighting_steps') || '[]');
+
+function filterCategory(category, buttonElement) {
+  currentCategory = category;
+  
+  // 更新 Chip 標籤 active 狀態
+  document.querySelectorAll('.category-chips .chip').forEach(chip => {
+    chip.classList.remove('active');
+  });
+  buttonElement.classList.add('active');
+
+  const galleryGrid = document.getElementById('galleryGrid');
+  const fightingPage = document.getElementById('fightingPage');
+  const searchBox = document.querySelector('.search-box');
+
+  if (category === 'fighting') {
+    galleryGrid.style.display = 'none';
+    if (searchBox) searchBox.style.display = 'none';
+    fightingPage.style.display = 'block';
+    renderFightingSteps(); // 渲染空白或已填寫的步驟
+  } else {
+    galleryGrid.style.display = 'grid';
+    if (searchBox) searchBox.style.display = 'flex';
+    fightingPage.style.display = 'none';
+    renderGallery();
+  }
+}
+
+// 渲染對打步驟
+function renderFightingSteps() {
+  const list = document.getElementById('fightingStepsList');
+  
+  if (fightingSteps.length === 0) {
+    list.innerHTML = `<li class="empty-hint">目前無內容，點擊下方「➕ 新增步驟」開始填寫。</li>`;
+    return;
+  }
+
+  list.innerHTML = fightingSteps.map((step, index) => `
+    <li>
+      <span class="step-num">${index + 1}</span>
+      <div class="step-text">
+        <input type="text" class="edit-title" value="${step.title}" placeholder="輸入招式/步驟名稱..." oninput="updateFightingStep(${index}, 'title', this.value)">
+        <textarea class="edit-desc" placeholder="輸入詳細動作說明..." oninput="updateFightingStep(${index}, 'desc', this.value)">${step.desc}</textarea>
+      </div>
+      <button class="delete-btn" onclick="deleteFightingStep(${index})">🗑️</button>
+    </li>
+  `).join('');
+}
+
+// 新增空白步驟
+function addFightingStep() {
+  fightingSteps.push({ title: '', desc: '' });
+  saveFightingSteps();
+  renderFightingSteps();
+}
+
+// 更新內容
+function updateFightingStep(index, field, value) {
+  fightingSteps[index][field] = value;
+  saveFightingSteps();
+}
+
+// 刪除步驟
+function deleteFightingStep(index) {
+  fightingSteps.splice(index, 1);
+  saveFightingSteps();
+  renderFightingSteps();
+}
+
+// 儲存至 localStorage
+function saveFightingSteps() {
+  localStorage.setItem('fighting_steps', JSON.stringify(fightingSteps));
+}
    /* ＝＝＝＝ 1. 資料庫 ＝＝＝＝ */
 const galleryData = [
   {
