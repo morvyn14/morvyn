@@ -19,7 +19,7 @@
         <li><button class="tab-btn active" onclick="switchTab('home')">🏠 首頁</button></li>
         <li><button class="tab-btn" onclick="switchTab('gallery')">🗡️ 兵器圖鑑</button></li>
         <li><button class="tab-btn" onclick="switchTab('fight')">⚔️ 摃對</button></li>
-        <li><button class="tab-btn" onclick="switchTab('simulator')">☯️ 陣形模擬器</button></li>
+        <li><button class="tab-btn" onclick="switchTab('simulator')">☯️ 陣形圖鑑</button></li>
         <li><button class="tab-btn" onclick="switchTab('quiz')">🎧 隨堂測驗</button></li>
         <li><button class="tab-btn" onclick="switchTab('fieldwork')">📜 田野筆記</button></li>
       </ul>
@@ -38,7 +38,7 @@
         <p>透過數位互動圖鑑與動態陣形模擬，保存台灣第一香「西港刈香」宋江陣的武術技藝與台語專業詞彙。</p>
         <div class="hero-buttons">
           <button class="btn-primary" onclick="switchTab('gallery')">探索兵器圖鑑</button>
-          <button class="btn-secondary" onclick="switchTab('simulator')">進入陣形模擬器</button>
+          <button class="btn-secondary" onclick="switchTab('simulator')">進入陣形圖鑑</button>
         </div>
       </div>
 
@@ -51,15 +51,15 @@
         </div>
         <div class="feature-card" onclick="switchTab('simulator')">
           <span class="feature-icon">☯️</span>
-          <h3>動態陣法即時模擬</h3>
-          <p>透過 Canvas 動態展現八卦陣、蜈蚣陣與開斧動作，點擊陣中人員可檢視個人職責與站位。</p>
+          <h3>經典陣法數位圖鑑</h3>
+          <p>收錄八卦陣、蜈蚣陣、開斧等經典陣頭陣形圖解與詳細說明。</p>
         </div>
         <div class="feature-card" onclick="switchTab('quiz')">
           <span class="feature-icon">🎯</span>
           <h3>互動聽力與文史測驗</h3>
           <p>藉由趣味問答驗收學習成果，聽語音選兵器，深入了解傳統陣頭文化底蘊。</p>
         </div>
-         <div class="feature-card" onclick="switchTab('fight')">
+        <div class="feature-card" onclick="switchTab('fight')">
           <span class="feature-icon">⚔️</span>
           <h3>摃對</h3>
           <p>傳統陣頭雙人兵器對打套路與招式解析。</p>
@@ -68,156 +68,68 @@
     </section>
 
     <!-- 模組 2：兵器與角色圖鑑 -->
-<section id="gallery" class="tab-content">
-  <div class="filter-bar">
-    <div class="search-box">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="搜尋兵器、角色或台羅拼音..." oninput="renderGallery()">
-    </div>
-    <div class="category-chips">
-      <button class="chip active" onclick="filterCategory('all', this)">全部 (All)</button>
-      <button class="chip" onclick="filterCategory('weapon', this)">傳統兵器</button>
-      <button class="chip" onclick="filterCategory('role', this)">陣頭角色</button>
-      <button class="chip" onclick="filterCategory('flag', this)">樂器</button>
-      <button class="chip" onclick="filterCategory('favorite', this)">⭐ 我的收藏</button>
-    </div>
-  </div>
-
-  <!-- 原本的卡片網格 -->
-  <div id="galleryGrid" class="gallery-grid"></div>
-</section>
-
-
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- 動態渲染卡片 -->
+    <section id="gallery" class="tab-content">
+      <div class="filter-bar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="搜尋兵器、角色或台羅拼音..." oninput="renderGallery()">
+        </div>
+        <div class="category-chips">
+          <button class="chip active" onclick="filterCategory('all', this)">全部 (All)</button>
+          <button class="chip" onclick="filterCategory('weapon', this)">傳統兵器</button>
+          <button class="chip" onclick="filterCategory('role', this)">陣頭角色</button>
+          <button class="chip" onclick="filterCategory('flag', this)">樂器</button>
+          <button class="chip" onclick="filterCategory('favorite', this)">⭐ 我的收藏</button>
+        </div>
       </div>
+
+      <!-- 卡片網格 -->
+      <div id="galleryGrid" class="gallery-grid"></div>
     </section>
+
     <!-- 模組 3：對貢 (對打套路介紹) -->
     <section id="fight" class="tab-content">
-      
-     <div class="content-container" style="background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); max-width: 800px; margin: 0 auto;">
+      <div class="content-container" style="background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); max-width: 800px; margin: 0 auto;">
         <h3 style="color: #333; margin-bottom: 20px; border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 5px;">常見對打組合</h3>
         
-        <!-- === 18組專屬圖片卡片區塊 === -->
+        <!-- 18組專屬圖片卡片區塊 -->
         <div class="combo-grid">
-          <!-- 第 1 組 -->
-          <div class="combo-card">
-            <img src="image/1.JPG" alt="單刀/雨傘">
-            <div class="combo-title">1. 單刀 / 雨傘</div>
-          </div>
-          <!-- 第 2 組 -->
-          <div class="combo-card">
-            <img src="image/2.JPG" alt="耙/牌刀">
-            <div class="combo-title">2. 耙 / 牌刀</div>
-          </div>
-          <!-- 第 3 組 -->
-          <div class="combo-card">
-            <img src="image/3.JPG" alt="鉤仔/棍仔">
-            <div class="combo-title">3. 鉤仔 / 棍仔</div>
-          </div>
-          <!-- 第 4 組 -->
-          <div class="combo-card">
-            <img src="image/4.JPG" alt="鐽刀/雙鞭">
-            <div class="combo-title">4. 鐽刀 / 雙鞭</div>
-          </div>
-          <!-- 第 5 組 -->
-          <div class="combo-card">
-            <img src="image/5.JPG" alt="耙/牌刀">
-            <div class="combo-title">5. 耙 / 牌刀</div>
-          </div>
-          <!-- 第 6 組 -->
-          <div class="combo-card">
-            <img src="image/6.JPG" alt="棍仔/牌刀">
-            <div class="combo-title">6. 棍仔 / 牌刀</div>
-          </div>
-          <!-- 第 7 組 -->
-          <div class="combo-card">
-            <img src="image/7.JPG" alt="耙/牌刀">
-            <div class="combo-title">7. 耙 / 牌刀</div>
-          </div>
-          <!-- 第 8 組 -->
-          <div class="combo-card">
-            <img src="image/8.JPG" alt="耙/牌刀">
-            <div class="combo-title">8. 耙 / 牌刀</div>
-          </div>
-          <!-- 第 9 組 -->
-          <div class="combo-card">
-            <img src="image/9.JPG" alt="耙/牌刀">
-            <div class="combo-title">9. 耙 / 牌刀</div>
-          </div>
-          <!-- 第 10 組 -->
-          <div class="combo-card">
-            <img src="image/10.JPG" alt="鐽刀/雙鐧">
-            <div class="combo-title">10. 鐽刀 / 雙鐧</div>
-          </div>
-          <!-- 第 11 組 -->
-          <div class="combo-card">
-            <img src="image/11.JPG" alt="耙/鐽刀">
-            <div class="combo-title">11. 耙 / 鐽刀</div>
-          </div>
-          <!-- 第 12 組 -->
-          <div class="combo-card">
-            <img src="image/12.JPG" alt="耙/牌刀">
-            <div class="combo-title">12. 耙 / 牌刀</div>
-          </div>
-          <!-- 第 13 組 -->
-          <div class="combo-card">
-            <img src="image/13.JPG" alt="鉤鐮槍/牌刀">
-            <div class="combo-title">13. 鉤鐮槍 / 牌刀</div>
-          </div>
-          <!-- 第 14 組 -->
-          <div class="combo-card">
-            <img src="image/14.JPG" alt="棍仔/棍仔">
-            <div class="combo-title">14. 棍仔 / 棍仔</div>
-          </div>
-          <!-- 第 15 組 -->
-          <div class="combo-card">
-            <img src="image/15.JPG" alt="鐽刀/雙刀">
-            <div class="combo-title">15. 鐽刀 / 雙刀</div>
-          </div>
-          <!-- 第 16 組 -->
-          <div class="combo-card">
-            <img src="image/16.JPG" alt="耙/牌刀">
-            <div class="combo-title">16. 耙 / 牌刀</div>
-          </div>
-          <!-- 第 17 組 -->
-          <div class="combo-card">
-            <img src="image/17.JPG" alt="耙/牌刀(翻山*)">
-            <div class="combo-title">17. 耙 / 牌刀 (翻山*)</div>
-          </div>
-          <!-- 第 18 組 -->
-          <div class="combo-card">
-            <img src="image/18.JPG" alt="棍仔/單刀">
-            <div class="combo-title">18. 棍仔 / 單刀</div>
-          </div>
+          <div class="combo-card"><img src="image/1.JPG" alt="單刀/雨傘"><div class="combo-title">1. 單刀 / 雨傘</div></div>
+          <div class="combo-card"><img src="image/2.JPG" alt="耙/牌刀"><div class="combo-title">2. 耙 / 牌刀</div></div>
+          <div class="combo-card"><img src="image/3.JPG" alt="鉤仔/棍仔"><div class="combo-title">3. 鉤仔 / 棍仔</div></div>
+          <div class="combo-card"><img src="image/4.JPG" alt="鐽刀/雙鞭"><div class="combo-title">4. 鐽刀 / 雙鞭</div></div>
+          <div class="combo-card"><img src="image/5.JPG" alt="耙/牌刀"><div class="combo-title">5. 耙 / 牌刀</div></div>
+          <div class="combo-card"><img src="image/6.JPG" alt="棍仔/牌刀"><div class="combo-title">6. 棍仔 / 牌刀</div></div>
+          <div class="combo-card"><img src="image/7.JPG" alt="耙/牌刀"><div class="combo-title">7. 耙 / 牌刀</div></div>
+          <div class="combo-card"><img src="image/8.JPG" alt="耙/牌刀"><div class="combo-title">8. 耙 / 牌刀</div></div>
+          <div class="combo-card"><img src="image/9.JPG" alt="耙/牌刀"><div class="combo-title">9. 耙 / 牌刀</div></div>
+          <div class="combo-card"><img src="image/10.JPG" alt="鐽刀/雙鐧"><div class="combo-title">10. 鐽刀 / 雙鐧</div></div>
+          <div class="combo-card"><img src="image/11.JPG" alt="耙/鐽刀"><div class="combo-title">11. 耙 / 鐽刀</div></div>
+          <div class="combo-card"><img src="image/12.JPG" alt="耙/牌刀"><div class="combo-title">12. 耙 / 牌刀</div></div>
+          <div class="combo-card"><img src="image/13.JPG" alt="鉤鐮槍/牌刀"><div class="combo-title">13. 鉤鐮槍 / 牌刀</div></div>
+          <div class="combo-card"><img src="image/14.JPG" alt="棍仔/棍仔"><div class="combo-title">14. 棍仔 / 棍仔</div></div>
+          <div class="combo-card"><img src="image/15.JPG" alt="鐽刀/雙刀"><div class="combo-title">15. 鐽刀 / 雙刀</div></div>
+          <div class="combo-card"><img src="image/16.JPG" alt="耙/牌刀"><div class="combo-title">16. 耙 / 牌刀</div></div>
+          <div class="combo-card"><img src="image/17.JPG" alt="耙/牌刀(翻山*)"><div class="combo-title">17. 耙 / 牌刀 (翻山*)</div></div>
+          <div class="combo-card"><img src="image/18.JPG" alt="棍仔/單刀"><div class="combo-title">18. 棍仔 / 單刀</div></div>
         </div>
-      </div>
-        <!-- === 自訂文字區塊結束 === -->
-
       </div>
     </section>
 
-    <!-- 模組 3：陣形模擬器 -->
+    <!-- 模組 4：陣形圖鑑 -->
     <section id="simulator" class="tab-content">
-        <div class="sim-panel">
-          <h3>宋江陣經典陣形</h3>
-          <div class="formation-selector">
-            <button class="formation-btn active" onclick="changeFormation('bagua', this)">1. 發彩</button>
-            <button class="formation-btn" onclick="changeFormation('centipede', this)">2. 蜈蚣陣 (Gôo-kong-tsûn)</button>
-
-            <button class="formation-btn" onclick="changeFormation('duida', this)">3. 對打陣 (Tuì-tánn-tsûn)</button>
-            <button class="formation-btn" onclick="changeFormation('circle', this)">4. 開斧圓陣 (Khui-póo-tsûn)</button>
-          </div>
-          <div class="info-box" id="formationInfo">
-            <h4>發彩</h4>
-            <p>發彩宣示操演正式開始，發彩後以反時鐘方向拍箍翻方向(繞圈過程中會在幾個定翻為，同時有讓陣員熱身的作用)。 </p>
-          </div>
-          <p style="margin-top: 15px; font-size: 0.85rem; color: var(--text-muted);">💡 提示：點擊畫布上的陣員（圓點），可檢視該位置的兵器與台語名稱。</p>
+      <div class="filter-bar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="formationSearchInput" placeholder="搜尋陣形名稱、台羅拼音或說明..." oninput="renderFormations()">
         </div>
       </div>
+
+      <!-- 陣形卡片網格 -->
+      <div id="formationGrid" class="gallery-grid"></div>
     </section>
 
-    <!-- 模組 4：隨堂測驗 -->
+    <!-- 模組 5：隨堂測驗 -->
     <section id="quiz" class="tab-content">
       <div class="quiz-card">
         <div class="quiz-progress">
@@ -240,7 +152,7 @@
       </div>
     </section>
 
-    <!-- 模組 5：田野筆記與地圖 -->
+    <!-- 模組 6：田野筆記與地圖 -->
     <section id="fieldwork" class="tab-content">
       <div class="fieldwork-container">
         <div class="field-card">
@@ -284,208 +196,166 @@
   </footer>
 
   <script>
-    // 預設空的對打步驟陣列（或自動讀取已儲存內容）
-let fightingSteps = JSON.parse(localStorage.getItem('fighting_steps') || '[]');
+    /* ＝＝＝＝ 1. 兵器圖鑑資料庫 ＝＝＝＝ */
+    const galleryData = [
+      {
+        id: 'thau-ki',
+        name: '頭旗',
+        tailo: 'Thâu-kî',
+        category: 'weapon',
+        img: 'image/1.jpeg',
+        desc: '• 主帥的象徵：頭旗代表陣頭的「主帥」，在宮廟交陪、出巡或開演時，頭旗所到之處即代表整個陣頭的意志。\n• 破陣與點兵的指揮具：宋江陣在變換陣形時，隊員必須觀察頭旗（通常配合「雙斧」）的走位、旗號與律動來移動。頭旗動，則全陣動。\n• 神聖性與禁忌：頭旗在出陣前必須經過淨爐、開光等宗教儀式，並通常會安上符令。在民俗禁忌中，頭旗絕對不能倒地，也不容許外人隨意跨越或觸摸，具有強烈的驅邪、鎮煞與護衛神轎的功能。',
+        audioText: '頭旗 Thâu-kî',
+        audioSrc: 'audio/1.mp3'
+      },
+      {
+        id: 'siang-poo',
+        name: '雙斧',
+        tailo: 'Siang-póo',
+        category: 'weapon',
+        img: 'image/2.jpeg',
+        desc: '• 副帥與護法：頭旗象徵主帥宋江，而雙斧則扮演「副帥」與「貼身護法」的角色，緊隨頭旗左右保護其安全，與頭旗合稱為「旗斧」。\n• 陣形的第二指揮官：負責帶領隊員進行細部的破陣、開路與斬煞，通常由陣中身手最矯健的核心骨幹擔任。\n• 破煞與開路：具強烈辟邪破煞功能，遇過橋、路口或進入廟埕時舞動劈砍，象徵斬除無形惡煞，開闢清淨道路。',
+        audioText: '雙斧 Siang-póo',
+        audioSrc: 'audio/2.mp3'
+      },
+      {
+        id: 'tann-to',
+        name: '單刀',
+        tailo: 'Tann-to',
+        category: 'weapon',
+        img: 'image/3.jpeg',
+        desc: '常稱為官刀或長刀（如雲南斬馬刀），為雙手共執的長柄重兵器，屬於「開利器」代表。隊伍中通常配置兩支，由身形高大、臂力壯碩者執掌，擔任隊伍的「頭官」與「尾官」，負責前後鎮守、威壓全場。',
+        audioText: '單刀 Tann-to',
+        audioSrc: 'audio/3.mp3'
+      },
+      {
+        id: 'hoo-suann',
+        name: '雨傘',
+        tailo: 'Hōo-suànn',
+        category: 'weapon',
+        img: 'image/4.jpeg',
+        desc: '極具地方特色的神兵，外觀為日常雨傘但內藏機關，進可攻、退可守。蘊含以柔克剛、出奇制勝的哲學，常與短刀或雙刀搭配，展現觀賞性極高、虛實莫測的對操套路，也是軍師或重要角色的象徵。',
+        audioText: '雨傘 Hōo-suànn',
+        audioSrc: 'audio/4.mp3'
+      },
+      {
+        id: 'pe',
+        name: '耙',
+        tailo: 'Pê',
+        category: 'weapon',
+        img: 'image/5.jpeg',
+        desc: '即「月牙鏟」，頂端呈彎月朝上、下接長柄，傳統耙頭多漆成紅色。由農用工具演變而來，相傳也是佛教僧侶隨身武器，在操演中屬於中長距離的防禦與壓制型兵器。',
+        audioText: '耙 Pê',
+        audioSrc: 'audio/5.mp3'
+      },
+      {
+        id: 'pai-to',
+        name: '牌刀',
+        tailo: 'Pâi-to',
+        category: 'weapon',
+        img: 'image/6.jpeg',
+        desc: '由盾牌（籐編、竹編或牛皮製）搭配短刀使用。牌刀手是陣頭中人數較多的「中堅主力」，在「打人路」與「破陣」時扮演衝鋒陷陣的步兵角色，負責抵擋遠程與重型兵器攻擊。',
+        audioText: '牌刀 Pâi-to',
+        audioSrc: 'audio/6.mp3'
+      },
+      {
+        id: 'kau-a',
+        name: '鉤仔',
+        tailo: 'Kau-á',
+        category: 'weapon',
+        img: 'image/7.jpeg',
+        desc: '俗稱「鉤鐮槍」。結合農用鐮刀與長槍的設計，源於民兵訓練與抗擊外敵（如明代戚家軍抗倭）的軍事鐵證，反映台灣早期鄉勇就地取材、禦敵保鄉的歷史背景。',
+        audioText: '鉤仔 Kau-á',
+        audioSrc: 'audio/7.mp3'
+      },
+      {
+        id: 'kun-a',
+        name: '棍仔',
+        tailo: 'Kùn-á',
+        category: 'weapon',
+        img: 'image/8.jpeg',
+        desc: '俗稱「齊眉棍」。長度齊眉，攻守兼備。招式樸實無華但威力驚人，不分棍頭棍尾皆可攻擊防守，為宋江陣中最具代表性且人數眾多的基本長兵器之一。',
+        audioText: '棍仔 Kùn-á',
+        audioSrc: 'audio/8.mp3'
+      },
+      {
+        id: 'thah-to',
+        name: '躂刀',
+        tailo: 'Thah-to',
+        category: 'weapon',
+        img: 'image/9.jpeg',
+        desc: '亦寫作「躂仔刀」，為靈巧流暢的長柄攻擊性兵器。招式（劈、砍、挑、撩）與大刀雷同，但重量較輕，使操刀者能展現快速轉身、連續格擋與突襲，變幻性高。',
+        audioText: '躂刀 Thah-to',
+        audioSrc: 'audio/9.mp3'
+      },
+      {
+        id: 'siang-pian',
+        name: '雙鞭',
+        tailo: 'Siang-pian',
+        category: 'weapon',
+        img: 'image/10.jpeg',
+        desc: '亦可稱為「鐵尺（Thih-tshioh）」。歸類為防守反擊型短兵器，因為長度較短，非常講究敏捷的步法（如蹲低、翻滾、閃轉）。',
+        audioText: '雙鞭 Siang-pian',
+        audioSrc: 'audio/10.mp3'
+      },
+      {
+        id: 'siang-kan',
+        name: '雙鐧',
+        tailo: 'Siang-kán',
+        category: 'weapon',
+        img: 'image/11.jpeg',
+        desc: '亦可稱為「雙眼（Siang-gán）」。歸類為攻防一體的雙器械短兵器，講求「左禦右攻，右禦左攻」的雙手協調默契。',
+        audioText: '雙鐧 Siang-kán',
+        audioSrc: 'audio/11.mp3'
+      },
+      {
+        id: 'siang-to',
+        name: '雙刀',
+        tailo: 'Siang-to',
+        category: 'weapon',
+        img: 'image/12.jpeg',
+        desc: '雙手各執一刀，為身法最輕盈、招式極具觀賞性的「短雙兵」代表。屬於有刃、貼身斬擊的利器，講求劃、割、撩、劈的犀利度與身刀合一。',
+        audioText: '雙刀 Siang-to',
+        audioSrc: 'audio/12.mp3'
+      }
+    ];
 
-function filterCategory(category, buttonElement) {
-  currentCategory = category;
-  
-  // 更新 Chip 標籤 active 狀態
-  document.querySelectorAll('.category-chips .chip').forEach(chip => {
-    chip.classList.remove('active');
-  });
-  buttonElement.classList.add('active');
-
-  const galleryGrid = document.getElementById('galleryGrid');
-  const fightingPage = document.getElementById('fightingPage');
-  const searchBox = document.querySelector('.search-box');
-
-  if (category === 'fighting') {
-    galleryGrid.style.display = 'none';
-    if (searchBox) searchBox.style.display = 'none';
-    fightingPage.style.display = 'block';
-    renderFightingSteps(); // 渲染空白或已填寫的步驟
-  } else {
-    galleryGrid.style.display = 'grid';
-    if (searchBox) searchBox.style.display = 'flex';
-    fightingPage.style.display = 'none';
-    renderGallery();
-  }
-}
-
-// 渲染對打步驟
-function renderFightingSteps() {
-  const list = document.getElementById('fightingStepsList');
-  
-  if (fightingSteps.length === 0) {
-    list.innerHTML = `<li class="empty-hint">目前無內容，點擊下方「➕ 新增步驟」開始填寫。</li>`;
-    return;
-  }
-
-  list.innerHTML = fightingSteps.map((step, index) => `
-    <li>
-      <span class="step-num">${index + 1}</span>
-      <div class="step-text">
-        <input type="text" class="edit-title" value="${step.title}" placeholder="輸入招式/步驟名稱..." oninput="updateFightingStep(${index}, 'title', this.value)">
-        <textarea class="edit-desc" placeholder="輸入詳細動作說明..." oninput="updateFightingStep(${index}, 'desc', this.value)">${step.desc}</textarea>
-      </div>
-      <button class="delete-btn" onclick="deleteFightingStep(${index})">🗑️</button>
-    </li>
-  `).join('');
-}
-
-// 新增空白步驟
-function addFightingStep() {
-  fightingSteps.push({ title: '', desc: '' });
-  saveFightingSteps();
-  renderFightingSteps();
-}
-
-// 更新內容
-function updateFightingStep(index, field, value) {
-  fightingSteps[index][field] = value;
-  saveFightingSteps();
-}
-
-// 刪除步驟
-function deleteFightingStep(index) {
-  fightingSteps.splice(index, 1);
-  saveFightingSteps();
-  renderFightingSteps();
-}
-
-// 儲存至 localStorage
-function saveFightingSteps() {
-  localStorage.setItem('fighting_steps', JSON.stringify(fightingSteps));
-}
-   /* ＝＝＝＝ 1. 資料庫 ＝＝＝＝ */
-const galleryData = [
-  {
-    id: 'thau-ki',
-    name: '頭旗',
-    tailo: 'Thâu-kî',
-    category: 'weapon',
-    img: 'image/1.jpeg',
-    desc: '• 主帥的象徵：頭旗代表陣頭的「主帥」，在宮廟交陪、出巡或開演時，頭旗所到之處即代表整個陣頭的意志。\n• 破陣與點兵的指揮具：宋江陣在變換陣形時，隊員必須觀察頭旗（通常配合「雙斧」）的走位、旗號與律動來移動。頭旗動，則全陣動。\n• 神聖性與禁忌：頭旗在出陣前必須經過淨爐、開光等宗教儀式，並通常會安上符令。在民俗禁忌中，頭旗絕對不能倒地，也不容許外人隨意跨越或觸摸，具有強烈的驅邪、鎮煞與護衛神轎的功能。',
-    audioText: '頭旗 Thâu-kî',
-    audioSrc: 'audio/1.mp3'
-  },
-  {
-    id: 'siang-poo',
-    name: '雙斧',
-    tailo: 'Siang-póo',
-    category: 'weapon',
-    img: 'image/2.jpeg',
-    desc: '• 副帥與護法：頭旗象徵主帥宋江，而雙斧則扮演「副帥」與「貼身護法」的角色，緊隨頭旗左右保護其安全，與頭旗合稱為「旗斧」。\n• 陣形的第二指揮官：負責帶領隊員進行細部的破陣、開路與斬煞，通常由陣中身手最矯健的核心骨幹擔任。\n• 破煞與開路：具強烈辟邪破煞功能，遇過橋、路口或進入廟埕時舞動劈砍，象徵斬除無形惡煞，開闢清淨道路。',
-    audioText: '雙斧 Siang-póo',
-    audioSrc: 'audio/2.mp3'
-  },
-  {
-    id: 'tann-to',
-    name: '單刀',
-    tailo: 'Tann-to',
-    category: 'weapon',
-    img: 'image/3.jpeg',
-    desc: '常稱為官刀或長刀（如雲南斬馬刀），為雙手共執的長柄重兵器，屬於「開利器」代表。隊伍中通常配置兩支，由身形高大、臂力壯碩者執掌，擔任隊伍的「頭官」與「尾官」，負責前後鎮守、威壓全場。',
-    audioText: '單刀 Tann-to',
-    audioSrc: 'audio/3.mp3'
-  },
-  {
-    id: 'hoo-suann',
-    name: '雨傘',
-    tailo: 'Hōo-suànn',
-    category: 'weapon',
-    img: 'image/4.jpeg',
-    desc: '極具地方特色的神兵，外觀為日常雨傘但內藏機關，進可攻、退可守。蘊含以柔克剛、出奇制勝的哲學，常與短刀或雙刀搭配，展現觀賞性極高、虛實莫測的對操套路，也是軍師或重要角色的象徵。',
-    audioText: '雨傘 Hōo-suànn',
-    audioSrc: 'audio/4.mp3'
-  },
-  {
-    id: 'pe',
-    name: '耙',
-    tailo: 'Pê',
-    category: 'weapon',
-    img: 'image/5.jpeg',
-    desc: '即「月牙鏟」，頂端呈彎月朝上、下接長柄，傳統耙頭多漆成紅色。由農用工具演變而來，相傳也是佛教僧侶隨身武器，在操演中屬於中長距離的防禦與壓制型兵器。',
-    audioText: '耙 Pê',
-    audioSrc: 'audio/5.mp3'
-  },
-  {
-    id: 'pai-to',
-    name: '牌刀',
-    tailo: 'Pâi-to',
-    category: 'weapon',
-    img: 'image/6.jpeg',
-    desc: '由盾牌（籐編、竹編或牛皮製）搭配短刀使用。牌刀手是陣頭中人數較多的「中堅主力」，在「打人路」與「破陣」時扮演衝鋒陷陣的步兵角色，負責抵擋遠程與重型兵器攻擊。',
-    audioText: '牌刀 Pâi-to',
-    audioSrc: 'audio/6.mp3'
-  },
-  {
-    id: 'kau-a',
-    name: '鉤仔',
-    tailo: 'Kau-á',
-    category: 'weapon',
-    img: 'image/7.jpeg',
-    desc: '俗稱「鉤鐮槍」。結合農用鐮刀與長槍的設計，源於民兵訓練與抗擊外敵（如明代戚家軍抗倭）的軍事鐵證，反映台灣早期鄉勇就地取材、禦敵保鄉的歷史背景。',
-    audioText: '鉤仔 Kau-á',
-    audioSrc: 'audio/7.mp3'
-  },
-  {
-    id: 'kun-a',
-    name: '棍仔',
-    tailo: 'Kùn-á',
-    category: 'weapon',
-    img: 'image/8.jpeg',
-    desc: '俗稱「齊眉棍」。長度齊眉，攻守兼備。招式樸實無華但威力驚人，不分棍頭棍尾皆可攻擊防守，為宋江陣中最具代表性且人數眾多的基本長兵器之一。',
-    audioText: '棍仔 Kùn-á',
-    audioSrc: 'audio/8.mp3'
-  },
-  {
-    id: 'thah-to',
-    name: '躂刀',
-    tailo: 'Thah-to',
-    category: 'weapon',
-    img: 'image/9.jpeg',
-    desc: '亦寫作「躂仔刀」，為靈巧流暢的長柄攻擊性兵器。招式（劈、砍、挑、撩）與大刀雷同，但重量較輕，使操刀者能展現快速轉身、連續格擋與突襲，變幻性高。',
-    audioText: '躂刀 Thah-to',
-    audioSrc: 'audio/9.mp3'
-  },
-  {
-    id: 'siang-pian',
-    name: '雙鞭',
-    tailo: 'Siang-pian',
-    category: 'weapon',
-    img: 'image/10.jpeg',
-    desc: '亦可稱為「鐵尺（Thih-tshioh）」。歸類為防守反擊型短兵器，因為長度較短，非常講究敏捷的步法（如蹲低、翻滾、閃轉）。',
-    audioText: '雙鞭 Siang-pian',
-    audioSrc: 'audio/10.mp3'
-  },
-  {
-    id: 'siang-kan',
-    name: '雙鐧',
-    tailo: 'Siang-kán',
-    category: 'weapon',
-    img: 'image/11.jpeg',
-    desc: '亦可稱為「雙眼（Siang-gán）」。歸類為攻防一體的雙器械短兵器，講求「左禦右攻，右禦左攻」的雙手協調默契。',
-    audioText: '雙鐧 Siang-kán',
-    audioSrc: 'audio/11.mp3'
-  },
-  {
-    id: 'siang-to',
-    name: '雙刀',
-    tailo: 'Siang-to',
-    category: 'weapon',
-    img: 'image/12.jpeg',
-    desc: '雙手各執一刀，為身法最輕盈、招式極具觀賞性的「短雙兵」代表。屬於有刃、貼身斬擊的利器，講求劃、割、撩、劈的犀利度與身刀合一。',
-    audioText: '雙刀 Siang-to',
-    audioSrc: 'audio/12.mp3'
-  },
-];
+    /* ＝＝＝＝ 2. 陣形圖鑑資料庫（可自訂內容） ＝＝＝＝ */
+    const formationData = [
+      {
+        id: 'form-1',
+        name: '發彩',
+        tailo: 'Huat-tsái',
+        img: '', // 填入圖片路徑，例如：'image/f1.jpg'
+        desc: '發彩宣示操演正式開始，發彩後以反時鐘方向拍箍翻方向(繞圈過程中會在幾個定翻為，同時有讓陣員熱身的作用)。'
+      },
+      {
+        id: 'form-2',
+        name: '蜈蚣陣',
+        tailo: 'Gôo-kong-tsûn',
+        img: '', 
+        desc: ''
+      },
+      {
+        id: 'form-3',
+        name: '對打陣',
+        tailo: 'Tuì-tánn-tsûn',
+        img: '', 
+        desc: ''
+      },
+      {
+        id: 'form-4',
+        name: '開斧圓陣',
+        tailo: 'Khui-póo-tsûn',
+        img: '', 
+        desc: ''
+      }
+    ];
 
     let favorites = JSON.parse(localStorage.getItem('xigang_favs') || '[]');
     let currentCategory = 'all';
 
-    /* ＝＝＝＝ 2. 主題切換與分頁切換 ＝＝＝＝ */
+    /* ＝＝＝＝ 3. 主題與頁籤切換 ＝＝＝＝ */
     function toggleTheme() {
       document.body.classList.toggle('dark-mode');
       const btn = document.getElementById('themeToggleBtn');
@@ -502,18 +372,17 @@ const galleryData = [
 
       document.getElementById(tabId).classList.add('active');
       
-      // 更新按鈕狀態
       const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.getAttribute('onclick').includes(tabId));
       if (activeBtn) activeBtn.classList.add('active');
 
       if (tabId === 'simulator') {
-        initCanvas();
+        renderFormations();
       } else if (tabId === 'quiz') {
         initQuiz();
       }
     }
 
-    /* ＝＝＝＝ 3. 圖鑑模組（搜尋、篩選、收藏、TTS語音） ＝＝＝＝ */
+    /* ＝＝＝＝ 4. 兵器圖鑑渲染 ＝＝＝＝ */
     function renderGallery() {
       const grid = document.getElementById('galleryGrid');
       const search = document.getElementById('searchInput').value.toLowerCase();
@@ -538,7 +407,7 @@ const galleryData = [
         card.className = 'card';
         card.innerHTML = `
           <div class="card-img-wrapper">
-            <img src="${item.img}" alt="${item.name}">
+            <img src="${item.img || 'image/placeholder.jpg'}" alt="${item.name}">
             <button class="bookmark-btn ${isFav ? 'active' : ''}" onclick="toggleFav('${item.id}', event)">
               ${isFav ? '★' : '☆'}
             </button>
@@ -551,7 +420,7 @@ const galleryData = [
             <p class="card-desc">${item.desc}</p>
             <div class="card-actions">
               <button class="audio-btn" onclick="speakText('${item.audioSrc}')">🔊 聽發音</button>
-              <button class="detail-btn" onclick="openModal('${item.id}')">詳情</button>
+              <button class="detail-btn" onclick="openModal('${item.id}', 'gallery')">詳情</button>
             </div>
           </div>
         `;
@@ -577,39 +446,86 @@ const galleryData = [
       renderGallery();
     }
 
-    // 全域變數，用來掌控當前播放的音訊（避免重複疊音）
-let currentAudio = null;
+    /* ＝＝＝＝ 5. 陣形圖鑑渲染 ＝＝＝＝ */
+    function renderFormations() {
+      const grid = document.getElementById('formationGrid');
+      const search = document.getElementById('formationSearchInput').value.toLowerCase();
+      grid.innerHTML = '';
 
-function speakText(audioSrc) {
-  if (!audioSrc) {
-    console.warn('未指定音檔路徑');
-    return;
-  }
+      const filtered = formationData.filter(item => {
+        return item.name.includes(search) || 
+               item.tailo.toLowerCase().includes(search) || 
+               item.desc.includes(search);
+      });
 
-  // 如果已有音訊正在播放，先暫停並重置時間
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
-  }
+      if (filtered.length === 0) {
+        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">沒有找到符合條件的陣形。</p>`;
+        return;
+      }
 
-  // 建立新的 Audio 物件並播放
-  currentAudio = new Audio(audioSrc);
-  currentAudio.play().catch(error => {
-    console.error('音檔播放失敗：', error);
-    alert('音檔載入或播放失敗，請檢查檔案路徑是否正確。');
-  });
-}
+      filtered.forEach(item => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-img-wrapper">
+            <img src="${item.img || 'image/placeholder.jpg'}" alt="${item.name}">
+          </div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">${item.name}</h3>
+              <span class="tailo">${item.tailo}</span>
+            </div>
+            <p class="card-desc">${item.desc || '（暫無詳細內容）'}</p>
+            <div class="card-actions">
+              <button class="detail-btn" style="width: 100%;" onclick="openModal('${item.id}', 'formation')">詳情</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
 
-    /* ＝＝＝＝ 4. 彈窗 Modal ＝＝＝＝ */
-    function openModal(id) {
-      const item = galleryData.find(g => g.id === id);
+    /* ＝＝＝＝ 6. 音訊播放 ＝＝＝＝ */
+    let currentAudio = null;
+    function speakText(audioSrc) {
+      if (!audioSrc) {
+        console.warn('未指定音檔路徑');
+        return;
+      }
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+      currentAudio = new Audio(audioSrc);
+      currentAudio.play().catch(error => {
+        console.error('音檔播放失敗：', error);
+        alert('音檔載入或播放失敗，請檢查檔案路徑是否正確。');
+      });
+    }
+
+    /* ＝＝＝＝ 7. 彈窗 Modal ＝＝＝＝ */
+    function openModal(id, type = 'gallery') {
+      let item;
+      if (type === 'gallery') {
+        item = galleryData.find(g => g.id === id);
+      } else {
+        item = formationData.find(f => f.id === id);
+      }
+
       if (!item) return;
 
       document.getElementById('modalTitle').textContent = item.name;
       document.getElementById('modalTailo').textContent = item.tailo;
-      document.getElementById('modalImg').src = item.img;
-      document.getElementById('modalDesc').textContent = item.desc;
-      document.getElementById('modalAudioBtn').onclick = () => speakText(item.audioSrc);
+      document.getElementById('modalImg').src = item.img || 'image/placeholder.jpg';
+      document.getElementById('modalDesc').textContent = item.desc || '（暫無詳細內容）';
+
+      const audioBtn = document.getElementById('modalAudioBtn');
+      if (item.audioSrc) {
+        audioBtn.style.display = 'block';
+        audioBtn.onclick = () => speakText(item.audioSrc);
+      } else {
+        audioBtn.style.display = 'none';
+      }
 
       document.getElementById('detailModal').classList.add('active');
     }
@@ -618,127 +534,7 @@ function speakText(audioSrc) {
       document.getElementById('detailModal').classList.remove('active');
     }
 
-    /* ＝＝＝＝ 5. Canvas 陣型模擬器 ＝＝＝＝ */
-    let canvas, ctx;
-    let simAnimationId;
-    let isSimPlaying = true;
-    let simAngle = 0;
-    let currentFormation = 'bagua';
-
-    function initCanvas() {
-      canvas = document.getElementById('formationCanvas');
-      ctx = canvas.getContext('2d');
-      if (!simAnimationId) {
-        animateSim();
-      }
-    }
-
-    function changeFormation(formType, btnEl) {
-      currentFormation = formType;
-      document.querySelectorAll('.formation-btn').forEach(b => b.classList.remove('active'));
-      btnEl.classList.add('active');
-
-      const infoBox = document.getElementById('formationInfo');
-      if (formType === 'bagua') {
-        infoBox.innerHTML = '<h4>八卦陣</h4><p>宋江陣最具防守與鎮煞意義的陣型。頭旗與雙斧位於陣心，其餘兵器依陰陽八卦方位包覆，變化莫測。</p>';
-      } else if (formType === 'centipede') {
-        infoBox.innerHTML = '<h4>蜈蚣陣</h4><p>隊伍魚貫而行，形如百足蜈蚣蜿蜒前進，展現極高敏捷度與團結氣勢。</p>';
-      } else if (formType === 'duida') {
-        infoBox.innerHTML = '<h4>對打陣</h4><p>陣員兩兩相對進行兵器對攻模擬，節奏緊湊且考驗動作默契。</p>';
-      } else if (formType === 'circle') {
-        infoBox.innerHTML = '<h4>開斧圓陣</h4><p>全陣繞成大圓，雙斧與頭旗於中央進行開斧破陣儀式。</p>';
-      }
-    }
-
-    function toggleSimPlay() {
-      isSimPlaying = !isSimPlaying;
-      document.getElementById('playBtn').textContent = isSimPlaying ? '⏸️ 暫停' : '▶️ 播放';
-    }
-
-    function resetSim() {
-      simAngle = 0;
-    }
-
-    function animateSim() {
-      simAnimationId = requestAnimationFrame(animateSim);
-      if (!ctx || !canvas) return;
-
-      const speed = parseFloat(document.getElementById('speedRange').value);
-      if (isSimPlaying) {
-        simAngle += 0.02 * speed;
-      }
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-
-      // 繪製背景網格
-      ctx.strokeStyle = '#2d3531';
-      ctx.lineWidth = 1;
-      for (let x = 0; x < canvas.width; x += 40) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
-      }
-      for (let y = 0; y < canvas.height; y += 40) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
-      }
-
-      // 根據陣形繪製陣員
-      if (currentFormation === 'bagua') {
-        // 中心頭旗
-        drawWarrior(centerX, centerY, '#8b2635', '頭旗');
-        
-        // 八卦外環
-        const count = 8;
-        const radius = 120;
-        for (let i = 0; i < count; i++) {
-          const a = simAngle + (i * (Math.PI * 2 / count));
-          const x = centerX + Math.cos(a) * radius;
-          const y = centerY + Math.sin(a) * radius;
-          drawWarrior(x, y, '#d4a373', i % 2 === 0 ? '齊眉棍' : '雙斧');
-        }
-      } else if (currentFormation === 'centipede') {
-        const count = 10;
-        for (let i = 0; i < count; i++) {
-          const x = 100 + i * 40;
-          const y = centerY + Math.sin(simAngle * 2 + i * 0.4) * 40;
-          drawWarrior(x, y, i === 0 ? '#8b2635' : '#d4a373', i === 0 ? '頭旗' : '陣員');
-        }
-      } else if (currentFormation === 'duida') {
-        for (let i = 0; i < 4; i++) {
-          const offset = Math.sin(simAngle * 3) * 15;
-          drawWarrior(centerX - 80 + offset, 120 + i * 60, '#8b2635', '齊眉棍');
-          drawWarrior(centerX + 80 - offset, 120 + i * 60, '#d4a373', '籐牌');
-        }
-      } else if (currentFormation === 'circle') {
-        const count = 12;
-        const radius = 140;
-        for (let i = 0; i < count; i++) {
-          const a = simAngle + (i * (Math.PI * 2 / count));
-          const x = centerX + Math.cos(a) * radius;
-          const y = centerY + Math.sin(a) * radius;
-          drawWarrior(x, y, '#d4a373', '陣員');
-        }
-        drawWarrior(centerX, centerY, '#8b2635', '雙斧破陣');
-      }
-    }
-
-    function drawWarrior(x, y, color, label) {
-      ctx.beginPath();
-      ctx.arc(x, y, 12, 0, Math.PI * 2);
-      ctx.fillStyle = color;
-      ctx.fill();
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '10px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(label, x, y + 22);
-    }
-
-    /* ＝＝＝＝ 6. 隨堂測驗 ＝＝＝＝ */
+    /* ＝＝＝＝ 8. 隨堂測驗 ＝＝＝＝ */
     let currentQuizIndex = 0;
     const quizQuestions = [
       {
@@ -783,7 +579,6 @@ function speakText(audioSrc) {
         grid.appendChild(btn);
       });
 
-      // 自動播放題目發音
       setTimeout(() => playQuizAudio(), 300);
     }
 
@@ -820,14 +615,14 @@ function speakText(audioSrc) {
       }, 1800);
     }
 
-    /* ＝＝＝＝ 7. 地圖地標互動 ＝＝＝＝ */
+    /* ＝＝＝＝ 9. 地圖地標互動 ＝＝＝＝ */
     function showPinInfo(title, desc) {
       document.getElementById('pinDetails').innerHTML = `
         <strong style="color: var(--primary-color);">${title}</strong>：${desc}
       `;
     }
 
-    /* ＝＝＝＝ 8. 初始化 ＝＝＝＝ */
+    /* ＝＝＝＝ 10. 初始化 ＝＝＝＝ */
     document.addEventListener('DOMContentLoaded', () => {
       renderGallery();
     });
