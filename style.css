@@ -855,3 +855,16 @@ footer {
           from { opacity: 0; transform: translateY(15px); }
           to { opacity: 1; transform: translateY(0); }
         }
+/* 陣形圖鑑專屬：將圖片容器改為 1:1 正方形 */
+#simulator .card-img-wrapper {
+  height: auto;           /* 取消原有的 200px 固定高度 */
+  aspect-ratio: 1 / 1;    /* 設定長寬比為正方形 1:1 */
+}
+/* 讓 Modal 詳細資料彈窗內的圖片完整顯示（不裁切、不變形） */
+/* 強制覆蓋 HTML 行內樣式，讓 Modal 圖片完全不裁切 */
+#detailModal #modalImg {
+  height: auto !important;
+  max-height: 50vh !important;
+  object-fit: contain !important;
+  background-color: rgba(0, 0, 0, 0.05);
+}
