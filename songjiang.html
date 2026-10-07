@@ -199,28 +199,18 @@
 
     <!-- 模組 3：陣形模擬器 -->
     <section id="simulator" class="tab-content">
-      <div class="simulator-container">
-        <div class="canvas-wrapper">
-          <canvas id="formationCanvas" width="600" height="450"></canvas>
-          <div class="sim-controls">
-            <button class="sim-btn" onclick="toggleSimPlay()" id="playBtn">⏸️ 暫停</button>
-            <button class="sim-btn" onclick="resetSim()">🔄 重置</button>
-            <span>速度：</span>
-            <input type="range" id="speedRange" min="0.5" max="2" step="0.1" value="1" style="width: 80px;">
-          </div>
-        </div>
         <div class="sim-panel">
           <h3>宋江陣經典陣形</h3>
           <div class="formation-selector">
-            <button class="formation-btn active" onclick="changeFormation('bagua', this)">1. 八卦陣 (Pah-kuà-tsûn)</button>
+            <button class="formation-btn active" onclick="changeFormation('bagua', this)">1. 發彩</button>
             <button class="formation-btn" onclick="changeFormation('centipede', this)">2. 蜈蚣陣 (Gôo-kong-tsûn)</button>
 
             <button class="formation-btn" onclick="changeFormation('duida', this)">3. 對打陣 (Tuì-tánn-tsûn)</button>
             <button class="formation-btn" onclick="changeFormation('circle', this)">4. 開斧圓陣 (Khui-póo-tsûn)</button>
           </div>
           <div class="info-box" id="formationInfo">
-            <h4>八卦陣</h4>
-            <p>宋江陣最具防禦與鎮煞意義的陣型。頭旗與雙斧位於陣心，其餘兵器依陰陽八卦方位包覆，變化莫測。</p>
+            <h4>發彩</h4>
+            <p>發彩宣示操演正式開始，發彩後以反時鐘方向拍箍翻方向(繞圈過程中會在幾個定翻為，同時有讓陣員熱身的作用)。 </p>
           </div>
           <p style="margin-top: 15px; font-size: 0.85rem; color: var(--text-muted);">💡 提示：點擊畫布上的陣員（圓點），可檢視該位置的兵器與台語名稱。</p>
         </div>
