@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">文化體驗三大亮點</h2>
+      <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">文化體驗傳送門</h2>
       <div class="feature-grid">
         <div class="feature-card" onclick="switchTab('gallery')">
           <span class="feature-icon">🔊</span>
@@ -63,6 +63,11 @@
           <span class="feature-icon">⚔️</span>
           <h3>摃對</h3>
           <p>傳統陣頭雙人兵器對打套路與招式解析。</p>
+        </div>
+        <div class="feature-card" onclick="switchTab('fieldwork')">
+          <span class="feature-icon">📜</span>
+          <h3>田野日記</h3>
+          <p>待填入</p>
         </div>
       </div>
     </section>
@@ -163,16 +168,28 @@
         </div>
 
         <div class="field-card">
-          <h3>西港刈香陣館地圖（示意）</h3>
-          <div class="map-placeholder">
-            <span>慶安宮周邊陣館分布圖</span>
-            <div class="map-pin" style="top: 40%; left: 50%;" title="西港慶安宮" onclick="showPinInfo('慶安宮', '西港刈香信仰中心，香科期各陣頭皆需至此開斧起陣。')"></div>
-            <div class="map-pin" style="top: 30%; left: 35%;" title="八份姑媽宮" onclick="showPinInfo('八份姑媽宮', '早期宋江陣發源地之一，保有歷史悠久的采風紀錄。')"></div>
-            <div class="map-pin" style="top: 60%; left: 65%;" title="烏竹林廣慈宮" onclick="showPinInfo('烏竹林廣慈宮', '以金獅陣聞名，與宋江陣同屬武陣體系。')"></div>
-          </div>
-          <div id="pinDetails" style="margin-top: 15px; font-size: 0.95rem; color: var(--text-muted);">
-            點擊地圖上的紅點可檢視文史紀錄。
-          </div>
+          <h3>西港刈香陣館地圖</h3>
+          <div class="map-wrapper my-maps-active">
+  <iframe 
+    id="googleMap"
+    src="https://www.google.com/maps/d/u/0/embed?mid=1rsmYvMYZDi3DDH0vQn4vY0DzEX9cuyw&ehbc=2E312F&noprof=1" 
+    width="100%" 
+    height="320" 
+    style="border:0; border-radius: 8px;" 
+    allowfullscreen="" 
+    loading="lazy">
+  </iframe>
+</div>
+<!-- 地下下方的說明文字升級為陣館快速導覽按鈕 -->
+<div class="map-quick-links" style="margin-top: 15px;">
+  <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px;">📍 快速定位熱點陣館：</p>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <button class="chip" onclick="updateMapLocation('全區總覽')">🗺️ 全區總覽</button>
+    <button class="chip" onclick="updateMapLocation('慶安宮')">西港慶安宮</button>
+    <button class="chip" onclick="updateMapLocation('姑媽宮')">八份姑媽宮</button>
+    <button class="chip" onclick="updateMapLocation('廣慈宮')">烏竹林廣慈宮</button>
+  </div>
+</div>
         </div>
       </div>
     </section>
@@ -636,6 +653,29 @@
         <strong style="color: var(--primary-color);">${title}</strong>：${desc}
       `;
     }
+/* 切換 Google 地圖定位地點 */
+function updateMapLocation(place) {
+  const mapIframe = document.getElementById('googleMap');
+  const mapWrapper = document.querySelector('.map-wrapper');
+  if (!mapIframe) return;
+
+  if (place === '全區總覽') {
+    // 只有全區總覽加上 class，觸發推高遮蓋黑條
+    if (mapWrapper) mapWrapper.classList.add('my-maps-active');
+    mapIframe.src = "https://www.google.com/maps/d/u/0/embed?mid=1rsmYvMYZDi3DDH0vQn4vY0DzEX9cuyw&ehbc=2E312F&noprof=1"; 
+  } else {
+    // 切換到其他獨立宮廟時，移除推高效果，恢復正常顯示
+    if (mapWrapper) mapWrapper.classList.remove('my-maps-active');
+
+    if (place === '慶安宮') {
+      mapIframe.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d396.99289068530294!2d120.20210764020894!3d23.12145733913277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e78e31941b4a7%3A0xfc926ce360434cad!2z6KW_5riv5oW25a6J5a6u!5e0!3m2!1szh-TW!2stw!4v1791398568318!5m2!1szh-TW!2stw";
+    } else if (place === '廣慈宮') {
+      mapIframe.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d229.3306241884641!2d120.21560691297057!3d23.123073336203625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e7919f00ff931%3A0x8f21f34ae5131afa!2z54OP56u55p6X5buj5oWI5a6u44CI6KW_5riv6aaZ56eR6L2E5Y2ALemHkeeNhemZo-OAiQ!5e0!3m2!1szh-TW!2stw!4v1791398721699!5m2!1szh-TW!2stw";
+    } else if (place === '姑媽宮') {
+      mapIframe.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d229.32114385273306!2d120.21615532063231!3d23.12861952683412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e7922ab970a8f%3A0xaa6fb69cb898091a!2z5YWr5Lu9546J5YuF6ZaL5Z-65aeR5aq95a6u!5e0!3m2!1szh-TW!2stw!4v1791398631003!5m2!1szh-TW!2stw";
+    }
+  }
+}
 
     /* ＝＝＝＝ 10. 初始化 ＝＝＝＝ */
     document.addEventListener('DOMContentLoaded', () => {
