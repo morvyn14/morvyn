@@ -64,11 +64,6 @@
           <h3>摃對</h3>
           <p>傳統陣頭雙人兵器對打套路與招式解析。</p>
         </div>
-        <div class="feature-card" onclick="switchTab('fieldwork')">
-          <span class="feature-icon">📜</span>
-          <h3>田野日記</h3>
-          <p>待填入</p>
-        </div>
       </div>
     </section>
 
@@ -82,7 +77,6 @@
         <div class="category-chips">
           <button class="chip active" onclick="filterCategory('all', this)">全部 (All)</button>
           <button class="chip" onclick="filterCategory('weapon', this)">傳統兵器</button>
-          <button class="chip" onclick="filterCategory('role', this)">陣頭角色</button>
           <button class="chip" onclick="filterCategory('flag', this)">樂器</button>
           <button class="chip" onclick="filterCategory('favorite', this)">⭐ 我的收藏</button>
         </div>
@@ -334,7 +328,41 @@
         desc: '雙手各執一刀，為身法最輕盈、招式極具觀賞性的「短雙兵」代表。屬於有刃、貼身斬擊的利器，講求劃、割、撩、劈的犀利度與身刀合一。',
         audioText: '雙刀 Siang-to',
         audioSrc: 'audio/12.mp3'
-      }
+      },
+      // 在 galleryData 陣列最後新增以下三筆樂器資料
+{
+  id: 'lo',
+  name: '宋江鼓',
+  tailo: 'Lô',
+  category: 'flag', // 樂器分類
+  isVertical: true, // 標記為直式圖片
+  img: 'image/music1.jpg',
+  desc: '為整個陣頭的靈魂。這是一種單面皮鼓，通常配有專用背架，讓鼓手能背在胸前一面走動一面敲擊。隊員的所有武術動作、陣式變化與行進節奏，全依據鼓聲的拍節而動。',
+  audioText: '宋江鼓 Lô',
+  audioSrc: 'audio/music1.mp3'
+},
+{
+  id: 'ko',
+  name: '銅鑼',
+  tailo: 'Kóo',
+  category: 'flag',
+  isVertical: true, // 標記為直式圖片
+  img: 'image/music2.jpg',
+  desc: '屬於金屬打擊樂器，音色高亢響亮。在陣頭行進和伴奏時，鑼通常排列在隊伍兩旁，與中間的鼓、鈸相互配合。',
+  audioText: '銅鑼 Kóo',
+  audioSrc: 'audio/music2.mp3'
+},
+{
+  id: 'kue',
+  name: '鈸',
+  tailo: 'Pua̍h',
+  category: 'flag',
+  isVertical: true, // 標記為直式圖片
+  img: 'image/music3.jpg',
+  desc: '屬於金屬拍擊樂器。由演奏者雙手各持一面互相擊打，與鑼鼓聲交織出緊湊的節奏，強化武術操演的動感與威勢。',
+  audioText: '鈸 Pua̍h',
+  audioSrc: 'audio/music3.mp3'
+}
     ];
 
     /* ＝＝＝＝ 2. 陣形圖鑑資料庫（可自訂內容） ＝＝＝＝ */
@@ -422,50 +450,51 @@
     }
 
     /* ＝＝＝＝ 4. 兵器圖鑑渲染 ＝＝＝＝ */
-    function renderGallery() {
-      const grid = document.getElementById('galleryGrid');
-      const search = document.getElementById('searchInput').value.toLowerCase();
-      grid.innerHTML = '';
+    /* ＝＝＝＝ 4. 兵器圖鑑渲染 ＝＝＝＝ */
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  grid.innerHTML = '';
 
-      const filtered = galleryData.filter(item => {
-        const matchCat = (currentCategory === 'all') ||
-                         (currentCategory === 'favorite' && favorites.includes(item.id)) ||
-                         (item.category === currentCategory);
-        const matchSearch = item.name.includes(search) || item.tailo.toLowerCase().includes(search) || item.desc.includes(search);
-        return matchCat && matchSearch;
-      });
+  const filtered = galleryData.filter(item => {
+    const matchCat = (currentCategory === 'all') ||
+                     (currentCategory === 'favorite' && favorites.includes(item.id)) ||
+                     (item.category === currentCategory);
+    const matchSearch = item.name.includes(search) || item.tailo.toLowerCase().includes(search) || item.desc.includes(search);
+    return matchCat && matchSearch;
+  });
 
-      if (filtered.length === 0) {
-        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">沒有找到符合條件的項目。</p>`;
-        return;
-      }
+  if (filtered.length === 0) {
+    grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">沒有找到符合條件的項目。</p>`;
+    return;
+  }
 
-      filtered.forEach(item => {
-        const isFav = favorites.includes(item.id);
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="card-img-wrapper">
-            <img src="${item.img || 'image/placeholder.jpg'}" alt="${item.name}">
-            <button class="bookmark-btn ${isFav ? 'active' : ''}" onclick="toggleFav('${item.id}', event)">
-              ${isFav ? '★' : '☆'}
-            </button>
-          </div>
-          <div class="card-content">
-            <div class="card-header">
-              <h3 class="card-title">${item.name}</h3>
-              <span class="tailo">${item.tailo}</span>
-            </div>
-            <p class="card-desc">${item.desc}</p>
-            <div class="card-actions">
-              <button class="audio-btn" onclick="speakText('${item.audioSrc}')">🔊 聽發音</button>
-              <button class="detail-btn" onclick="openModal('${item.id}', 'gallery')">詳情</button>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
+  filtered.forEach(item => {
+    const isFav = favorites.includes(item.id);
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-img-wrapper ${item.isVertical ? 'vertical-img' : ''}">
+        <img src="${item.img || 'image/placeholder.jpg'}" alt="${item.name}">
+        <button class="bookmark-btn ${isFav ? 'active' : ''}" onclick="toggleFav('${item.id}', event)">
+          ${isFav ? '★' : '☆'}
+        </button>
+      </div>
+      <div class="card-content">
+        <div class="card-header">
+          <h3 class="card-title">${item.name}</h3>
+          <span class="tailo">${item.tailo}</span>
+        </div>
+        <p class="card-desc">${item.desc}</p>
+        <div class="card-actions">
+          <button class="audio-btn" onclick="speakText('${item.audioSrc}')">🔊 聽發音</button>
+          <button class="detail-btn" onclick="openModal('${item.id}', 'gallery')">詳情</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
 
     function filterCategory(cat, el) {
       currentCategory = cat;

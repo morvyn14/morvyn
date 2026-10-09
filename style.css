@@ -904,3 +904,17 @@ body.dark-mode .map-wrapper iframe {
   height: 380px;
   margin-top: -60px;
 }
+/* 專門針對直式樂器卡片的圖片區域 */
+.card-img-wrapper.vertical-img {
+  height: 320px; /* 將容器高度拉高，讓直圖看起來更大氣 */
+  background-color: #f5f5f3; /* 可微調背景色，讓白邊/灰邊更自然 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-img-wrapper.vertical-img img {
+  height: 100%;       /* 讓圖片高度撐滿容器 */
+  width: auto;        /* 寬度依比例自動縮放 */
+  object-fit: contain;
+}
