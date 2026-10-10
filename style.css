@@ -431,6 +431,7 @@ main {
   font-size: 0.9rem;
   margin-bottom: 16px;
   flex-grow: 1;
+  white-space: pre-line;
 }
 
 .card-actions {
